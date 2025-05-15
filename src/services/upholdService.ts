@@ -8,12 +8,14 @@ const sdk = new SDK({
 
 const ratesCache = new Map();
 
+
 export const getCurrencyRates = async (baseCurrency = "") => {
   if (ratesCache.has(baseCurrency)) {
     return ratesCache.get(baseCurrency);
   }
 
   try {
+    // If we pass on a `pair` ticket, we only get one object instead of array, hence the possibility of getting Ticker[] or just a Ticker object
     const rates = await sdk.getTicker(baseCurrency);
 
     ratesCache.set(baseCurrency, rates);

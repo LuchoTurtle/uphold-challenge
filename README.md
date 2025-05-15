@@ -52,3 +52,11 @@ export default tseslint.config({
   },
 })
 ```
+
+
+
+
+----- DOCUMENTATION -----
+
+- talk about production considerations for CORS (using a  proxy backend with express or something)
+- could have used `zod` to validate the DATA from the Api since it it can return a single object or an array

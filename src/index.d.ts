@@ -682,7 +682,7 @@
       options?: PaginationOptions,
     ) => Promise<Paginator<LedgerEntry>>
     /** Retrieves the exchange rates for all supported currency pairs, or a particular one if `pair` is provided. */
-    getTicker: (pair?: string, options?: ApiOptions) => Promise<Ticker>
+    getTicker: (pair?: string, options?: ApiOptions) => Promise<Ticker | Ticker[]>
     /** Retrieves a transaction's details. */
     getTransaction: (
       transactionId: string,
