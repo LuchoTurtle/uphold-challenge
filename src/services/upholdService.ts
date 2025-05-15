@@ -1,13 +1,12 @@
 import SDK from "@uphold/uphold-sdk-javascript";
 
 const sdk = new SDK({
-  baseUrl: import.meta.env.DEV ? "/api" : "http://api-sandbox.uphold.com",  // proxy to avoid CORS issues (check vite.config.js)
+  baseUrl: import.meta.env.DEV ? "/api" : "http://api-sandbox.uphold.com", // proxy to avoid CORS issues (check vite.config.js)
   clientId: "foo",
   clientSecret: "bar",
 });
 
 const ratesCache = new Map();
-
 
 export const getCurrencyRates = async (baseCurrency = "") => {
   if (ratesCache.has(baseCurrency)) {
@@ -15,11 +14,18 @@ export const getCurrencyRates = async (baseCurrency = "") => {
   }
 
   try {
+    let rates = await sdk.getTicker(baseCurrency);
     // If we pass on a `pair` ticket, we only get one object instead of array, hence the possibility of getting Ticker[] or just a Ticker object
-    const rates = await sdk.getTicker(baseCurrency);
+    if (Array.isArray(rates)) {
+      const formattedRates = rates.map((rate) => ({
+        ...rate,
+        ask: parseFloat(rate.ask).toFixed(6),
+        bid: parseFloat(rate.bid).toFixed(6),
+      }));
 
-    ratesCache.set(baseCurrency, rates);
-
+      ratesCache.set(baseCurrency, formattedRates);
+      rates = formattedRates;
+    }
     return rates;
   } catch (error) {
     console.error("Error fetching currency rates:", error);
