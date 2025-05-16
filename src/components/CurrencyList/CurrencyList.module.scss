@@ -8,44 +8,81 @@
 }
 
 .currencyItem {
-  background-color: #f9f9f9;
-  border: 1px solid $border-color;
-  border-radius: 4px;
+  position: relative;
+  width: 100%;
+  max-width: $container-sm;
+  margin: 0 auto;
   padding: $space-xs;
+  border-radius: 16px;
+  background-color: $color-base-white;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.05), 0 12px 24px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease-in-out;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: $space-2xs;
+  
+  &:hover {
+    transform: scale(1.03);
+  }
   
   @include dark-mode {
-    background-color: rgba(255, 255, 255, 0.05);
-    border-color: $dark-border-color;
+    background-color: transparent;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 -20px 80px -20px rgba(255, 255, 255, 0.12) inset;
   }
 }
 
-.convertedValue {
-  font-weight: bold;
+.iconContainer {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  background-color: $color-primary;
+  flex-shrink: 0;
+}
+
+.icon {
   font-size: $font-size-lg;
 }
 
-.currencyCode {
-  color: $text-color;
-  font-size: $font-size-base;
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.title {
+  font-size: $font-size-lg;
+  font-weight: 500;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
   
   @include dark-mode {
     color: $dark-text-color;
   }
 }
 
-@media (min-width: $breakpoint-md) {
-  .currencyList {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  }
+.description {
+  font-size: $font-size-base;
+  font-weight: normal;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  color: rgba($text-color, 0.6);
   
-  .currencyItem {
-    padding: $space-sm;
+  @include dark-mode {
+    color: rgba($dark-text-color, 0.6);
   }
-  
-  .convertedValue {
+}
+
+@media (min-width: $breakpoint-sm) {
+  .title {
     font-size: $font-size-xl;
   }
 }

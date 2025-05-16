@@ -30,8 +30,13 @@ const CurrencyItem: React.FC<CurrencyItemProps> = ({ currencyData, baseAmount })
     
   return (
     <div className={styles.currencyItem}>
-      <span className={styles.convertedValue}>{convertedValue}</span>
-      <span className={styles.currencyCode}>{currencyCode}</span>
+      <div className={styles.iconContainer}>
+        <span className={styles.icon}>📬</span>
+      </div>
+      <div className={styles.contentContainer}>
+        <h4 className={styles.title}>{convertedValue}</h4>
+        <p className={styles.description}>{currencyCode}</p>
+      </div>
     </div>
   );
 };
