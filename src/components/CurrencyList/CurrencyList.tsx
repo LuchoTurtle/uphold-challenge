@@ -7,6 +7,8 @@ interface CurrencyItemProps {
   baseAmount: string;
 }
 
+
+
 const CurrencyItem: React.FC<CurrencyItemProps> = ({ currencyData, baseAmount }) => {
 
   const convertedValue = baseAmount 
@@ -28,10 +30,21 @@ const CurrencyItem: React.FC<CurrencyItemProps> = ({ currencyData, baseAmount })
 
   const currencyCode = extractCurrencyCode(currencyData.pair, currencyData.currency);
     
+  const randomImageUrl = `https://fastly.picsum.photos/id/996/100/100.jpg?hmac=scb6pkBvuMbqxgLLWNGFgJuPt1c9zdeBHvoeqO0F4cg`;
+  
   return (
     <div className={styles.currencyItem}>
       <div className={styles.iconContainer}>
-        <span className={styles.icon}>📬</span>
+        <img 
+          src={randomImageUrl}
+          alt={`${currencyCode} currency`}
+          className={styles.currencyImage}
+          onError={(e) => {
+            // Fallback if image fails to load
+            e.currentTarget.style.display = 'none';
+            e.currentTarget.parentElement!.innerHTML = currencyCode.substring(0, 2);
+          }}
+        />
       </div>
       <div className={styles.contentContainer}>
         <h4 className={styles.title}>{convertedValue}</h4>
