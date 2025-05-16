@@ -7,7 +7,6 @@
   padding: $space-xs;
   background-color: $background-color;
   border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   
   @include dark-mode {
     background-color: $dark-background-color;

@@ -1,29 +1,5 @@
 @import './styles/variables';
 
-.App {
-  max-width: $container-md;
-  margin: 0 auto;
-  padding: $space-xs;
-}
-
-/* Currency converter styles */
-.currency-converter {
-  background-color: $color-base-white;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  padding: $space-xs;
-  
-  @include dark-mode {
-    background-color: $dark-background-color;
-  }
-}
-
-h1 {
-  text-align: center;
-  margin-bottom: $space-xs;
-  color: $text-color;
-}
-
 /* Input styles */
 .currency-input {
   display: flex;

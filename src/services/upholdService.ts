@@ -7,6 +7,7 @@ const sdk = new SDK({
 });
 
 //TODO maybe use React Query instead of caching like so (it will cache based on the search URL)
+//TODO add aria
 const ratesCache = new Map();
 
 export const getCurrencyRates = async (baseCurrency = "") => {
