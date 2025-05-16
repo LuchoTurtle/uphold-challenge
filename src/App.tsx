@@ -1,14 +1,20 @@
-import CurrencyConverter from './components/CurrencyConverter'
+import Header from './components/Header/Header';
+import CurrencyConverter from './components/CurrencyConverter';
 
 //TODO add aria
 //TODO toggler
-//TODO debounce
+//TODO icon no topo da tab
+//TODO testes
+//TODO import from barrel files
 function App() {
   return (
     <>
-      <CurrencyConverter />
+      <Header />
+      <main>
+        <CurrencyConverter />
+      </main>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

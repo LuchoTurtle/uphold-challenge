@@ -1,0 +1,39 @@
+@use '../../styles/variables' as *;
+
+.header {
+  width: 100%;
+  padding: $space-xs 0;
+  background-color: $color-base-white;
+  
+  @include dark-mode {
+    background-color: $dark-background-color;
+    border-color: $dark-border-color;
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $space-md;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logoContainer {
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 100%;
+  width: auto;
+}
+
+.rightComponent {
+  // Styling for whatever component you'll put on the right
+  display: flex;
+  align-items: center;
+  height: 40px;
+}

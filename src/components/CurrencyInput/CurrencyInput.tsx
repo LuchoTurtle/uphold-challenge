@@ -51,7 +51,7 @@ const CurrencyInput: React.FC<CurrencyInputProps> = ({
           type="text"
           value={inputValue}
           onChange={handleInputChange}
-          placeholder="0"
+          placeholder="0.00"
           className={styles.amountInput}
         />
         <div className={styles.currencySelector}>
