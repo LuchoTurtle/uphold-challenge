@@ -1,37 +1,24 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { getCurrencyRates } from "../services/upholdService";
-import useDebounce from "./useDebounce";
 import type { Rate, CurrencyConverterHook } from "../types/currency";
 
 export const useCurrencyConverter = (initialCurrency = "USD"): CurrencyConverterHook => {
   const [amount, setAmount] = useState<string>("");
   const [baseCurrency, setBaseCurrency] = useState<string>(initialCurrency);
-  const [rates, setRates] = useState<Rate[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<Error | null>(null);
-
-  const fetchRates = async (currency: string): Promise<void> => {
-    setLoading(true);
-    setError(null);
-    
-    try {
-      const fetchedRates = await getCurrencyRates(currency);
-      const filteredRates = fetchedRates.filter((rate: Rate) => 
-        rate.currency && rate.ask && rate.bid && rate.currency === currency
-      );
-      setRates(filteredRates);
-    } catch (err: unknown) {
-      setError(err instanceof Error ? err : new Error("An unknown error occurred"));
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const debouncedBaseCurrency = useDebounce<string>(baseCurrency, 300);
-
-  useEffect(() => {
-    fetchRates(debouncedBaseCurrency);
-  }, [debouncedBaseCurrency]);
+  
+  // React Query handles the API calls, caching, and refetching
+  const { data: allRates = [], isLoading, error } = useQuery({
+    queryKey: ['currencyRates', baseCurrency],
+    queryFn: () => getCurrencyRates(baseCurrency),
+    refetchOnWindowFocus: true,
+    staleTime: 1000 * 60 * 5, // 5 minutes
+  });
+  
+  // Filter rates to only include those for the selected currency
+  const rates = allRates.filter((rate: Rate) => 
+    rate.currency && rate.ask && rate.bid && rate.currency === baseCurrency
+  );
 
   const handleAmountChange = (newAmount: string): void => {
     setAmount(newAmount);
@@ -39,14 +26,15 @@ export const useCurrencyConverter = (initialCurrency = "USD"): CurrencyConverter
 
   const handleCurrencyChange = (newCurrency: string): void => {
     setBaseCurrency(newCurrency);
+    // React Query will automatically fetch new data when `baseCurrency` changes
   };
 
   return {
     amount,
     baseCurrency,
     rates,
-    loading,
-    error,
+    loading: isLoading,
+    error: error as Error | null,
     handleAmountChange,
     handleCurrencyChange,
   };

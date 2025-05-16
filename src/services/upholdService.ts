@@ -1,38 +1,30 @@
 import SDK, { type Ticker } from "@uphold/uphold-sdk-javascript";
 
 const sdk = new SDK({
-  baseUrl: import.meta.env.DEV ? "/api" : "http://api-sandbox.uphold.com", // proxy to avoid CORS issues (check vite.config.js)
+  baseUrl: import.meta.env.DEV ? "/api" : "http://api-sandbox.uphold.com",
   clientId: "foo",
   clientSecret: "bar",
 });
 
-//TODO maybe use React Query instead of caching like so (it will cache based on the search URL)
-//TODO add aria
-const ratesCache = new Map();
-
 export const getCurrencyRates = async (baseCurrency = ""): Promise<Ticker[]> => {
-  if (ratesCache.has(baseCurrency)) {
-    return ratesCache.get(baseCurrency);
-  }
-
   try {
-    let rates = await sdk.getTicker(baseCurrency);
-    // If we pass on a `pair` ticket, we only get one object instead of array, hence the possibility of getting Ticker[] or just a Ticker object
+    const rates = await sdk.getTicker(baseCurrency);
+    
+    // Handle either single Ticker or array of Tickers
     if (Array.isArray(rates)) {
-      const formattedRates = rates.map((rate) => ({
-        ...rate,
-        ask: parseFloat(rate.ask).toFixed(6),
-        bid: parseFloat(rate.bid).toFixed(6),
-      }));
-
-      ratesCache.set(baseCurrency, formattedRates);
-      rates = formattedRates;
+      return rates.map(formatRate);
     } else {
-      rates = [rates]
+      return [formatRate(rates)];
     }
-    return rates;
   } catch (error) {
     console.error("Error fetching currency rates:", error);
     throw error;
   }
 };
+
+// Helper function to format rate values consistently
+const formatRate = (rate: Ticker): Ticker => ({
+  ...rate,
+  ask: parseFloat(rate.ask).toFixed(6),
+  bid: parseFloat(rate.bid).toFixed(6),
+});
