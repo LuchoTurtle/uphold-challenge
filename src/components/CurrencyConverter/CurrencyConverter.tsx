@@ -1,8 +1,10 @@
 import React from 'react';
-import { useCurrencyConverter } from '../hooks/useCurrencyConverter';
-import CurrencyInput from './CurrencyInput';
-import CurrencyList from './CurrencyList';
-import type { Currency } from '../types/currency';
+import { useCurrencyConverter } from '../../hooks/useCurrencyConverter';
+import CurrencyInput from '../CurrencyInput';
+import CurrencyList from '../CurrencyList';
+import type { Currency } from '../../types/currency';
+
+import styles from './CurrencyConverter.module.css';
 
 const CURRENCIES: Currency[] = [
   { code: 'USD', name: 'US Dollar' },
@@ -29,8 +31,8 @@ const CurrencyConverter: React.FC = () => {
   } = useCurrencyConverter('USD');
 
   return (
-    <div className="currency-converter">
-      <h1>Currency Converter</h1>
+    <div className={styles.container}>
+      <h1 className={styles.title}>Currency Converter</h1>
       
       <CurrencyInput
         amount={amount}
@@ -40,8 +42,8 @@ const CurrencyConverter: React.FC = () => {
         currencies={CURRENCIES}
       />
       
-      {loading && <p>Loading rates...</p>}
-      {error && <p className="error">Error: {error.message}</p>}
+      {loading && <p className={styles.loading}>Loading rates...</p>}
+      {error && <p className={styles.error}>Error: {error.message}</p>}
       
       {!loading && !error && (
         <CurrencyList

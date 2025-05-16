@@ -1,0 +1,72 @@
+/* Check https://uphold.design for the guidelines on these values */
+:root {
+  /* Breakpoints */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+
+  /* Brand Colors ------------------ */
+  --color-primary-dark: #84fb7f;
+  --color-primary-light: #49cc68;
+  --color-neutral: #090d14;
+  --color-base-white: #ffffff;
+  --color-base-black: #000000;
+
+  /* Functional Colors */
+  --background-color: var(--color-base-white);
+  --text-color: var(--color-neutral);
+  --border-color: #e2e8f0;
+  --error-color: #ef4444;
+  --success-color: #22c55e;
+
+  /* Typography Scale --------------------- */
+  --font-size-xs: 10px; /* Tag */
+  --font-size-sm: 12px; /* Body 2 */
+  --font-size-base: 14px; /* Body 1 */
+  --font-size-lg: 18px; /* Paragraph */
+  --font-size-xl: 20px; /* Heading 4 */
+  --font-size-2xl: 24px; /* Heading 3 */
+  --font-size-3xl: 28px; /* Heading 2 */
+  --font-size-4xl: 32px; /* Heading 1 */
+  --font-size-5xl: 44px; /* Hero */
+
+  --leading-xs: 12px;
+  --leading-sm: 20px;
+  --leading-base: 24px;
+  --leading-lg: 26px;
+  --leading-xl: 28px;
+  --leading-2xl: 32px;
+  --leading-3xl: 36px;
+  --leading-4xl: 40px;
+  --leading-5xl: 56px;
+
+  /* Grid System (multiples of 10) ----------------- */
+  --grid-margin: 40px; /* Base margin */
+  --grid-gutter: 20px; /* Half of margin */
+
+  /* Spacing Scale (multiples of 10) */
+  --space-2xs: 10px;
+  --space-xs: 20px;
+  --space-sm: 30px;
+  --space-md: 40px;
+  --space-lg: 50px;
+  --space-xl: 60px;
+  --space-2xl: 80px;
+
+  /* Container Widths */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+}
+
+/* TODO toggle themes */
+@media (prefers-color-scheme: light) {
+  :root {
+    --background-color: var(--color-neutral);
+    --text-color: var(--color-base-white);
+    --border-color: #1e293b;
+    --color-primary: var(--color-primary-dark);
+  }
+}
