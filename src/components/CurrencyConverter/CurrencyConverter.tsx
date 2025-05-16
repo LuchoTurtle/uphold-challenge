@@ -1,6 +1,6 @@
 import React from "react";
 import { useCurrencyConverter } from "../../hooks/useCurrencyConverter";
-import CurrencyInput from "../CurrencyInput";
+import CurrencyInput from "../CurrencyInput/CurrencyInput";
 import CurrencyList from "../CurrencyList";
 import type { Currency } from "../../types/currency";
 

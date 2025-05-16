@@ -1,0 +1,88 @@
+@import '../../styles/variables';
+
+.currencyInputContainer {
+  margin-bottom: $space-xs;
+  
+  .currencyInputField {
+    display: flex;
+    position: sticky;
+    top: 0;
+    background: $color-base-white;
+    padding: $space-2xs 0;
+    z-index: 10;
+    
+    @include dark-mode {
+      background: $dark-background-color;
+    }
+  }
+  
+  .amountInput {
+    flex: 3;
+    padding: $space-2xs;
+    font-size: $font-size-lg;
+    border: 1px solid $border-color;
+    border-right: none;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    
+    @include dark-mode {
+      border-color: $dark-border-color;
+      background-color: $color-neutral;
+      color: $dark-text-color;
+    }
+  }
+  
+  .currencySelector {
+    flex: 1;
+    position: relative;
+    
+    .selectedCurrency {
+      display: flex;
+      align-items: center;
+      
+      .currencyFlag {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+      }
+      
+      .currencySelect {
+        flex: 1;
+        width: 100%;
+        padding: $space-2xs;
+        padding-left: 36px; // Make room for the flag
+        font-size: $font-size-lg;
+        border: 1px solid $border-color;
+        background: $color-base-white;
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+        cursor: pointer;
+        appearance: none;
+        
+        @include dark-mode {
+          border-color: $dark-border-color;
+          background-color: $color-neutral;
+          color: $dark-text-color;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: $breakpoint-sm) {
+  .currencyInputContainer {
+    .currencyInputField {
+      padding: $space-xs 0;
+    }
+    
+    .amountInput, .currencySelect {
+      padding: $space-xs;
+      font-size: $font-size-xl;
+    }
+  }
+}
