@@ -1,0 +1,51 @@
+@import '../../styles/variables';
+
+.currencyList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: $space-xs;
+  margin-top: $space-md;
+}
+
+.currencyItem {
+  background-color: #f9f9f9;
+  border: 1px solid $border-color;
+  border-radius: 4px;
+  padding: $space-xs;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  @include dark-mode {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: $dark-border-color;
+  }
+}
+
+.convertedValue {
+  font-weight: bold;
+  font-size: $font-size-lg;
+}
+
+.currencyCode {
+  color: $text-color;
+  font-size: $font-size-base;
+  
+  @include dark-mode {
+    color: $dark-text-color;
+  }
+}
+
+@media (min-width: $breakpoint-md) {
+  .currencyList {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+  
+  .currencyItem {
+    padding: $space-sm;
+  }
+  
+  .convertedValue {
+    font-size: $font-size-xl;
+  }
+}

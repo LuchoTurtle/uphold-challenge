@@ -1,4 +1,4 @@
-import SDK from "@uphold/uphold-sdk-javascript";
+import SDK, { type Ticker } from "@uphold/uphold-sdk-javascript";
 
 const sdk = new SDK({
   baseUrl: import.meta.env.DEV ? "/api" : "http://api-sandbox.uphold.com", // proxy to avoid CORS issues (check vite.config.js)
@@ -10,7 +10,7 @@ const sdk = new SDK({
 //TODO add aria
 const ratesCache = new Map();
 
-export const getCurrencyRates = async (baseCurrency = "") => {
+export const getCurrencyRates = async (baseCurrency = ""): Promise<Ticker[]> => {
   if (ratesCache.has(baseCurrency)) {
     return ratesCache.get(baseCurrency);
   }
@@ -27,6 +27,8 @@ export const getCurrencyRates = async (baseCurrency = "") => {
 
       ratesCache.set(baseCurrency, formattedRates);
       rates = formattedRates;
+    } else {
+      rates = [rates]
     }
     return rates;
   } catch (error) {

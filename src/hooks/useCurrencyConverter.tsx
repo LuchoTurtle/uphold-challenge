@@ -17,7 +17,7 @@ export const useCurrencyConverter = (initialCurrency = "USD"): CurrencyConverter
     try {
       const fetchedRates = await getCurrencyRates(currency);
       const filteredRates = fetchedRates.filter((rate: Rate) => 
-        rate.currency && rate.ask && rate.bid
+        rate.currency && rate.ask && rate.bid && rate.currency === currency
       );
       setRates(filteredRates);
     } catch (err: unknown) {
