@@ -7,10 +7,7 @@ interface CurrencyItemProps {
   baseAmount: string;
 }
 
-
-
 const CurrencyItem: React.FC<CurrencyItemProps> = ({ currencyData, baseAmount }) => {
-
   const convertedValue = baseAmount 
     ? parseFloat((parseFloat(baseAmount) * parseFloat(currencyData.ask)).toFixed(2))
       .toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
@@ -29,20 +26,31 @@ const CurrencyItem: React.FC<CurrencyItemProps> = ({ currencyData, baseAmount })
   }, []);
 
   const currencyCode = extractCurrencyCode(currencyData.pair, currencyData.currency);
-    
-  const randomImageUrl = `https://fastly.picsum.photos/id/996/100/100.jpg?hmac=scb6pkBvuMbqxgLLWNGFgJuPt1c9zdeBHvoeqO0F4cg`;
+  
+  // Use the currency code to get the corresponding icon from public/currencyIcons
+  const currencyIconUrl = `/currencyIcons/${currencyCode.toLowerCase()}.svg`;
+  
+  // Generate a random color class (1-5)
+  const colorClass = `color${Math.floor(Math.random() * 5) + 1}`;
   
   return (
     <div className={styles.currencyItem}>
       <div className={styles.iconContainer}>
         <img 
-          src={randomImageUrl}
+          src={currencyIconUrl}
           alt={`${currencyCode} currency`}
           className={styles.currencyImage}
           onError={(e) => {
-            // Fallback if image fails to load
+            // Remove the failed image
             e.currentTarget.style.display = 'none';
-            e.currentTarget.parentElement!.innerHTML = currencyCode.substring(0, 2);
+            
+            // Create a fallback element with currency code initials
+            const fallbackElement = document.createElement('div');
+            fallbackElement.className = `${styles.fallbackIcon} ${styles[colorClass]}`;
+            fallbackElement.textContent = currencyCode.substring(0, 2).toUpperCase();
+            
+            // Add to the DOM
+            e.currentTarget.parentElement?.appendChild(fallbackElement);
           }}
         />
       </div>

@@ -63,6 +63,6 @@ export default tseslint.config({
 - montserrat is the closest font to the one used in the original design
 - added all the styles from the brand guide from link.
 - used CSS modules instead of styled components to keep it simpler and have CSS guidelines be more visible
-
+- downloaded icons from `https://github.com/spothq/cryptocurrency-icons/tree/master/svg/color` 
 
 #
