@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
-import type { Rate } from "../../types/currency";
 import styles from "./CurrencyList.module.scss";
+import type { Rate } from "../../hooks/useCurrencyConverter";
 
 interface CurrencyItemProps {
   currencyData: Rate;

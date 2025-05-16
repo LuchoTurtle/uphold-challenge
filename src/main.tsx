@@ -7,7 +7,6 @@ import "./styles/global.scss";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 1000 * 60,  // 1 minute (rates update frequently but not instantly)
       retry: 1,
       retryDelay: 6000,
       refetchOnWindowFocus: false,
