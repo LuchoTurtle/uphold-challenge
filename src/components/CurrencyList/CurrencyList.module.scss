@@ -27,8 +27,10 @@
   }
   
   @include dark-mode {
-    background-color: $dark-background-color;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    background-color: transparent; // Transparent background instead of dark color
+    backdrop-filter: blur(8px); // Add blur effect
+    border: 1px solid rgba(255, 255, 255, 0.1); // Subtle white border
+    box-shadow: 0 -20px 80px -20px rgba(255, 255, 255, 0.12) inset; // Inner glow effect
   }
 }
 
