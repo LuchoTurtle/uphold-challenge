@@ -1,36 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styles from './Header.module.scss';
 import darkLogo from '../../assets/uphold-horizontal-dark.svg';
 import lightLogo from '../../assets/uphold-horizontal-light.svg';
+import { useTheme } from '../../hooks/useTheme';
 
 const Header: React.FC = () => {
-  // State to track dark mode preference
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  // Effect to detect system color scheme and set up listener
-  useEffect(() => {
-    // Check initial preference
-    const darkModeQuery = window.matchMedia('(prefers-color-scheme: light)');
-    setIsDarkMode(darkModeQuery.matches);
-
-    // Set up listener for changes
-    const handleChange = (e: MediaQueryListEvent) => {
-      setIsDarkMode(e.matches);
-    };
-    
-    darkModeQuery.addEventListener('change', handleChange);
-    
-    // Clean up listener
-    return () => {
-      darkModeQuery.removeEventListener('change', handleChange);
-    };
-  }, []);
-
-  // Toggle dark mode manually
-  const handleToggleChange = () => {
-    setIsDarkMode(prevMode => !prevMode);
-  };
-
+  // Use the theme context instead of local state
+  const { isDarkMode, toggleDarkMode } = useTheme();
+  
   // Use the appropriate logo based on theme
   const logoSrc = isDarkMode ? darkLogo : lightLogo;
 
@@ -50,10 +27,10 @@ const Header: React.FC = () => {
         <div className={styles.rightComponent}>
           <label className={styles.switch}>
             <input 
-              checked={isDarkMode} 
+              checked={!isDarkMode} 
               id="themeToggle" 
               type="checkbox" 
-              onChange={handleToggleChange}
+              onChange={toggleDarkMode}
               aria-label="Toggle dark mode"
             />
             <span className={styles.slider}>
