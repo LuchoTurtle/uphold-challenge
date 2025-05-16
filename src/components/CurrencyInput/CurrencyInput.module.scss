@@ -89,7 +89,7 @@
     
     .amountInput, 
     .currencySelector .selectedCurrency .currencySelect {
-      padding: $space-xs;
+      padding: $space-sm;
       font-size: $font-size-xl;
       min-height: 56px; // Larger minimum height for bigger screens
     }
@@ -104,7 +104,6 @@
     
     .amountInput, 
     .currencySelector .selectedCurrency .currencySelect {
-      padding: $space-sm;
       min-height: 64px; // Even larger for medium screens
     }
   }

@@ -10,8 +10,6 @@ interface CurrencyInputProps {
   currencies: Currency[];
 }
 
-
-
 const CurrencyInput: React.FC<CurrencyInputProps> = ({
   amount,
   currency,
@@ -19,7 +17,6 @@ const CurrencyInput: React.FC<CurrencyInputProps> = ({
   onCurrencyChange,
   currencies
 }) => {
-  // Find current selected currency to get its flag
   const flagUrl = 'https://upload.wikimedia.org/wikipedia/commons/8/8b/Europe_flag_circle.png';
   
   return (
