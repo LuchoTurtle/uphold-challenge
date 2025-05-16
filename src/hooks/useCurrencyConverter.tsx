@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getCurrencyRates } from "../services/upholdService";
 import type { Rate, CurrencyConverterHook } from "../types/currency";
@@ -16,8 +16,11 @@ export const useCurrencyConverter = (initialCurrency = "USD"): CurrencyConverter
   });
   
   // Filter rates to only include those for the selected currency
-  const rates = allRates.filter((rate: Rate) => 
-    rate.currency && rate.ask && rate.bid && rate.currency === baseCurrency
+  const rates = useMemo(() => 
+    allRates.filter((rate: Rate) => 
+      rate.currency && rate.ask && rate.bid && rate.currency === baseCurrency
+    ), 
+    [allRates, baseCurrency]
   );
 
   const handleAmountChange = (newAmount: string): void => {

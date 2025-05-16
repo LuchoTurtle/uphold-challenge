@@ -64,7 +64,7 @@ $container-xl: 1280px;
 
 // Dark mode mixin
 @mixin dark-mode {
-  @media (prefers-color-scheme: dark) {
+  @media (prefers-color-scheme: light) {
     @content;
   }
 }

@@ -1,8 +1,3 @@
-export interface Currency {
-  code: string;
-  name: string;
-}
-
 export interface Rate {
   currency: string;
   pair: string;

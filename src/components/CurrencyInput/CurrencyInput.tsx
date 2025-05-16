@@ -1,5 +1,4 @@
 import React from 'react';
-import type { Currency } from '../../types/currency';
 import styles from "./CurrencyInput.module.scss";
 
 interface CurrencyInputProps {
@@ -7,7 +6,7 @@ interface CurrencyInputProps {
   currency: string;
   onAmountChange: (amount: string) => void;
   onCurrencyChange: (currency: string) => void;
-  currencies: Currency[];
+  currencies: string[];
 }
 
 const CurrencyInput: React.FC<CurrencyInputProps> = ({
@@ -42,8 +41,8 @@ const CurrencyInput: React.FC<CurrencyInputProps> = ({
               className={styles.currencySelect}
             >
               {currencies.map((curr) => (
-                <option key={curr.code} value={curr.code}>
-                  {curr.code}
+                <option key={curr} value={curr}>
+                  {curr}
                 </option>
               ))}
             </select>
