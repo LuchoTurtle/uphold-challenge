@@ -75,7 +75,12 @@ const CurrencyItem: React.FC<CurrencyItemProps> = ({ currencyData, baseAmount })
         />
       </div>
       <div className={styles.contentContainer}>
-        <h4 className={styles.title}>{convertedValue}</h4>
+        <h4 
+          className={styles.title}
+          title={`${convertedValue} ${currencyCode}`} // Native tooltip shows full value with currency
+        >
+          {convertedValue}
+        </h4>
         <p className={styles.description}>{currencyCode}</p>
       </div>
     </div>

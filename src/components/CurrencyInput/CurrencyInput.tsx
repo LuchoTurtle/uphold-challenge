@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from "./CurrencyInput.module.scss";
+import useDebounce from '../../hooks/useDebounce';
 
 interface CurrencyInputProps {
   amount: string;
@@ -16,25 +17,45 @@ const CurrencyInput: React.FC<CurrencyInputProps> = ({
   onCurrencyChange,
   currencies
 }) => {
-  const flagUrl = 'https://upload.wikimedia.org/wikipedia/commons/8/8b/Europe_flag_circle.png';
+  // Use local state to track input value immediately
+  const [inputValue, setInputValue] = useState(amount);
+  // Debounce the input value before passing it up
+  const debouncedAmount = useDebounce(inputValue, 500); // 500ms delay
+  
+  // Update the controlled input when external amount changes
+  useEffect(() => {
+    setInputValue(amount);
+  }, [amount]);
+  
+  // Only call the parent's onAmountChange when the debounced value changes
+  useEffect(() => {
+    if (debouncedAmount !== amount) {
+      onAmountChange(debouncedAmount);
+    }
+  }, [debouncedAmount, onAmountChange, amount]);
+  
+  // Handle input changes locally first
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    
+    // Only allow numbers and decimal point
+    if (value === '' || /^[0-9]*\.?[0-9]*$/.test(value)) {
+      setInputValue(value);
+    }
+  };
   
   return (
     <div className={styles.currencyInputContainer}>
       <div className={styles.currencyInputField}>
         <input
           type="text"
-          value={amount}
-          onChange={(e) => onAmountChange(e.target.value)}
+          value={inputValue}
+          onChange={handleInputChange}
           placeholder="0"
           className={styles.amountInput}
         />
         <div className={styles.currencySelector}>
           <div className={styles.selectedCurrency}>
-            <img 
-              src={flagUrl} 
-              alt={`${currency} flag`} 
-              className={styles.currencyFlag} 
-            />
             <select 
               value={currency} 
               onChange={(e) => onCurrencyChange(e.target.value)}
