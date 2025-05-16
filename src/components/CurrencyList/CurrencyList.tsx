@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState, useEffect, useRef } from "react";
 import styles from "./CurrencyList.module.scss";
 import type { Rate } from "../../hooks/useCurrencyConverter";
 
@@ -8,6 +8,10 @@ interface CurrencyItemProps {
 }
 
 const CurrencyItem: React.FC<CurrencyItemProps> = ({ currencyData, baseAmount }) => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const iconContainerRef = useRef<HTMLDivElement>(null);
+  const imgRef = useRef<HTMLImageElement>(null);
+  
   const convertedValue = baseAmount 
     ? parseFloat((parseFloat(baseAmount) * parseFloat(currencyData.ask)).toFixed(2))
       .toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
@@ -27,31 +31,47 @@ const CurrencyItem: React.FC<CurrencyItemProps> = ({ currencyData, baseAmount })
 
   const currencyCode = extractCurrencyCode(currencyData.pair, currencyData.currency);
   
-  // Use the currency code to get the corresponding icon from public/currencyIcons
-  const currencyIconUrl = `/currencyIcons/${currencyCode.toLowerCase()}.svg`;
-  
   // Generate a random color class (1-5)
   const colorClass = `color${Math.floor(Math.random() * 5) + 1}`;
   
+  // Preload the image to check if it exists
+  useEffect(() => {
+    const img = new Image();
+    const currencyIconUrl = `/currencyIcons/${currencyCode.toLowerCase()}.svg`;
+    
+    img.onload = () => {
+      setImageLoaded(true);
+      if (imgRef.current) {
+        imgRef.current.style.display = 'block';
+      }
+    };
+    
+    img.src = currencyIconUrl;
+    
+    return () => {
+      // Clean up
+      img.onload = null;
+    };
+  }, [currencyCode]);
+  
   return (
     <div className={styles.currencyItem}>
-      <div className={styles.iconContainer}>
+      <div className={styles.iconContainer} ref={iconContainerRef}>
+        {/* Fallback is always rendered by default */}
+        <div 
+          className={`${styles.fallbackIcon} ${styles[colorClass]}`}
+          style={{ display: imageLoaded ? 'none' : 'flex' }}
+        >
+          {currencyCode.substring(0, 2).toUpperCase()}
+        </div>
+        
+        {/* Image is hidden until loaded */}
         <img 
-          src={currencyIconUrl}
+          ref={imgRef}
+          src={`/currencyIcons/${currencyCode.toLowerCase()}.svg`}
           alt={`${currencyCode} currency`}
-          className={styles.currencyImage}
-          onError={(e) => {
-            // Remove the failed image
-            e.currentTarget.style.display = 'none';
-            
-            // Create a fallback element with currency code initials
-            const fallbackElement = document.createElement('div');
-            fallbackElement.className = `${styles.fallbackIcon} ${styles[colorClass]}`;
-            fallbackElement.textContent = currencyCode.substring(0, 2).toUpperCase();
-            
-            // Add to the DOM
-            e.currentTarget.parentElement?.appendChild(fallbackElement);
-          }}
+          className={styles.currencyImage} 
+          style={{ display: 'none' }}
         />
       </div>
       <div className={styles.contentContainer}>
