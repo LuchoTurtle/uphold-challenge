@@ -1,4 +1,4 @@
-import './App.css'
+import './App.scss'
 import CurrencyConverter from './components/CurrencyConverter'
 
 function App() {

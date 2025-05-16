@@ -1,0 +1,75 @@
+@import '../../styles/variables';
+
+.container {
+  width: 100%;
+  max-width: $container-sm;
+  margin: $space-xs auto;
+  padding: $space-xs;
+  background-color: $background-color;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  
+  @include dark-mode {
+    background-color: $dark-background-color;
+  }
+}
+
+.title {
+  font-size: $font-size-3xl;
+  line-height: $leading-3xl;
+  color: $text-color;
+  margin-bottom: $space-xs;
+  text-align: center;
+  
+  @include dark-mode {
+    color: $dark-text-color;
+  }
+}
+
+.loading,
+.error {
+  text-align: center;
+  padding: $space-2xs;
+}
+
+.error {
+  color: $error-color;
+}
+
+@media (min-width: $breakpoint-sm) {
+  .container {
+    margin: $space-md auto;
+    padding: $space-md;
+  }
+
+  .title {
+    margin-bottom: $space-sm;
+  }
+}
+
+@media (min-width: $breakpoint-md) {
+  .container {
+    margin: $space-xl auto;
+    padding: $space-lg;
+  }
+
+  .title {
+    font-size: $font-size-4xl;
+    line-height: $leading-4xl;
+    margin-bottom: $space-md;
+  }
+}
+
+@media (min-width: $breakpoint-lg) {
+  .container {
+    margin: $space-2xl auto;
+    padding: $space-xl;
+  }
+}
+
+@media (min-width: $breakpoint-xl) {
+  .container {
+    margin: $space-2xl + $space-xl auto;
+    padding: $space-lg;
+  }
+}

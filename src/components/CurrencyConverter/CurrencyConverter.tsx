@@ -4,7 +4,7 @@ import CurrencyInput from '../CurrencyInput';
 import CurrencyList from '../CurrencyList';
 import type { Currency } from '../../types/currency';
 
-import styles from './CurrencyConverter.module.css';
+import styles from './CurrencyConverter.module.scss';
 
 const CURRENCIES: Currency[] = [
   { code: 'USD', name: 'US Dollar' },
