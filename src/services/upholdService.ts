@@ -45,20 +45,20 @@ export const getAllCurrencies = async (): Promise<string[]> => {
     // Get all USD pairs by default
     const tickers = await sdk.getTicker();
     const tickerArray = Array.isArray(tickers) ? tickers : [tickers];
-    
+
     // Extract unique currencies from pairs
     const currenciesSet = new Set<string>();
-    
+
     // Always add USD (since that's our default reference)
     currenciesSet.add("USD");
-    tickerArray.forEach(ticker => {
+    tickerArray.forEach((ticker) => {
       if (ticker.pair && ticker.currency) {
         const pairedCurrency = extractPairedCurrency(ticker.pair, ticker.currency);
         currenciesSet.add(pairedCurrency);
         currenciesSet.add(ticker.currency);
       }
     });
-    
+
     // Convert to array
     return Array.from(currenciesSet);
   } catch (error) {
@@ -75,10 +75,10 @@ export const getAllCurrencies = async (): Promise<string[]> => {
 export const getCurrencyRates = async (baseCurrency = ""): Promise<EnhancedTicker[]> => {
   try {
     const rates = await sdk.getTicker(baseCurrency);
-    
+
     // Handle either single Ticker or array of Tickers
     if (Array.isArray(rates)) {
-      return rates.map(rate => enhanceTicker(rate));
+      return rates.map((rate) => enhanceTicker(rate));
     } else {
       return [enhanceTicker(rates)];
     }
@@ -87,7 +87,6 @@ export const getCurrencyRates = async (baseCurrency = ""): Promise<EnhancedTicke
     throw error;
   }
 };
-
 
 /**
  * Enhances the Ticker object by formatting its values and adding the paired currency.
@@ -100,9 +99,9 @@ const enhanceTicker = (rate: Ticker): EnhancedTicker => {
     ask: parseFloat(rate.ask).toFixed(6),
     bid: parseFloat(rate.bid).toFixed(6),
   };
-  
+
   return {
     ...formattedRate,
-    pairedCurrency: rate.currency ? extractPairedCurrency(rate.pair, rate.currency) : ''
+    pairedCurrency: rate.currency ? extractPairedCurrency(rate.pair, rate.currency) : "",
   };
 };

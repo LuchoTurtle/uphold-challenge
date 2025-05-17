@@ -1,4 +1,4 @@
-@use 'variables' as *;
+@use "variables" as *;
 
 * {
   box-sizing: border-box;
@@ -17,7 +17,7 @@
 body {
   background-color: $color-base-white;
   color: $text-color;
-  
+
   @include dark-mode {
     background-color: $dark-background-color;
     color: $dark-text-color;
@@ -31,7 +31,7 @@ h1,
   line-height: $leading-5xl;
   margin-bottom: $leading-5xl; // Match its own line height
   color: $text-color;
-  
+
   @include dark-mode {
     color: $dark-text-color;
   }
@@ -43,7 +43,7 @@ h2,
   line-height: $leading-4xl;
   margin-bottom: $leading-4xl; // Match its own line height
   color: $text-color;
-  
+
   @include dark-mode {
     color: $dark-text-color;
   }
@@ -55,7 +55,7 @@ h3,
   line-height: $leading-3xl;
   margin-bottom: $leading-3xl; // Match its own line height
   color: $text-color;
-  
+
   @include dark-mode {
     color: $dark-text-color;
   }
@@ -67,7 +67,7 @@ h4,
   line-height: $leading-2xl;
   margin-bottom: $leading-2xl; // Match its own line height
   color: $text-color;
-  
+
   @include dark-mode {
     color: $dark-text-color;
   }
@@ -78,7 +78,7 @@ h4,
   line-height: $leading-base;
   margin-bottom: $leading-base; // Match its own line height
   color: $text-color;
-  
+
   @include dark-mode {
     color: $dark-text-color;
   }
@@ -89,7 +89,7 @@ h4,
   line-height: $leading-sm;
   margin-bottom: $leading-sm; // Match its own line height
   color: $text-color;
-  
+
   @include dark-mode {
     color: $dark-text-color;
   }
@@ -100,7 +100,7 @@ h4,
   line-height: $leading-lg;
   margin-bottom: $leading-lg; // Match its own line height
   color: $text-color;
-  
+
   @include dark-mode {
     color: $dark-text-color;
   }
@@ -111,16 +111,25 @@ h4,
   line-height: $leading-xs;
   margin-bottom: $leading-xs; // Match its own line height
   color: $text-color;
-  
+
   @include dark-mode {
     color: $dark-text-color;
   }
 }
 
 /* Remove bottom margin from last child elements */
-p:last-child, 
-h1:last-child, h2:last-child, h3:last-child, h4:last-child,
-.h1:last-child, .h2:last-child, .h3:last-child, .h4:last-child,
-.text-body1:last-child, .text-body2:last-child, .text-paragraph:last-child, .text-tag:last-child {
+p:last-child,
+h1:last-child,
+h2:last-child,
+h3:last-child,
+h4:last-child,
+.h1:last-child,
+.h2:last-child,
+.h3:last-child,
+.h4:last-child,
+.text-body1:last-child,
+.text-body2:last-child,
+.text-paragraph:last-child,
+.text-tag:last-child {
   margin-bottom: 0;
 }

@@ -5,7 +5,6 @@ import './App.module.scss';
 //TODO testes
 //TODO input limit?
 //TODO check file before submitting
-//TODO SCSS files to be nested and shi
 function App() {
   return (
     <>

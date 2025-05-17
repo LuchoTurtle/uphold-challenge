@@ -44,8 +44,10 @@ const CurrencyConverter: React.FC = () => {
   return (
     <div className={styles.container}>
       <section aria-labelledby="converter-heading">
-        <h2 id="converter-heading" className={styles.srOnly}>Currency Converter Tool</h2>
-        
+        <h2 id="converter-heading" className={styles.srOnly}>
+          Currency Converter Tool
+        </h2>
+
         <CurrencyInput
           amount={amount}
           currency={baseCurrency}
@@ -55,12 +57,7 @@ const CurrencyConverter: React.FC = () => {
         />
 
         {loadingRates && (
-          <div 
-            className={styles.skeletonList} 
-            role="status" 
-            aria-live="polite" 
-            aria-busy="true"
-          >
+          <div className={styles.skeletonList} role="status" aria-live="polite" aria-busy="true">
             <span className={styles.srOnly}>Loading currency rates...</span>
             {Array(5)
               .fill(null)
@@ -75,18 +72,20 @@ const CurrencyConverter: React.FC = () => {
               ))}
           </div>
         )}
-        
+
         {!loadingRates && rates.length > 0 && (
           <section aria-labelledby="rates-heading">
             <h3 id="rates-heading" className={styles.srOnly}>
-              {`Currency conversions for ${amount || '0'} ${baseCurrency}`}
+              {`Currency conversions for ${amount || "0"} ${baseCurrency}`}
             </h3>
             <CurrencyList rates={rates} baseAmount={amount} />
           </section>
         )}
-        
+
         {!loadingRates && rates.length === 0 && (
-          <p className={styles.noResults} role="status">No conversion rates available for the selected currency.</p>
+          <p className={styles.noResults} role="status">
+            No conversion rates available for the selected currency.
+          </p>
         )}
       </section>
     </div>

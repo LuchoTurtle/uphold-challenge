@@ -7,36 +7,31 @@ import { ThemeContext } from "./ThemeContext";
  * @returns {JSX.Element} - The ThemeProvider component.
  */
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-
   // Check if the user has a saved preference in localStorage, otherwise use system preference
   const getInitialTheme = (): boolean => {
-    const savedTheme = localStorage.getItem('darkMode');
+    const savedTheme = localStorage.getItem("darkMode");
     if (savedTheme !== null) {
-      return savedTheme === 'true';
+      return savedTheme === "true";
     }
     // Check system preference
-    return window.matchMedia('(prefers-color-scheme: light)').matches;
+    return window.matchMedia("(prefers-color-scheme: light)").matches;
   };
 
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
-  
+
   // Set initial theme after component mounts to avoid SSR mismatch
   useEffect(() => {
     setIsDarkMode(getInitialTheme());
   }, []);
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
-    localStorage.setItem('darkMode', String(isDarkMode));
+    document.documentElement.setAttribute("data-theme", isDarkMode ? "dark" : "light");
+    localStorage.setItem("darkMode", String(isDarkMode));
   }, [isDarkMode]);
 
   const toggleDarkMode = () => {
-    setIsDarkMode(prev => !prev);
+    setIsDarkMode((prev) => !prev);
   };
 
-  return (
-    <ThemeContext.Provider value={{ isDarkMode, toggleDarkMode }}>
-      {children}
-    </ThemeContext.Provider>
-  );
+  return <ThemeContext.Provider value={{ isDarkMode, toggleDarkMode }}>{children}</ThemeContext.Provider>;
 };

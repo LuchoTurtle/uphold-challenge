@@ -46,26 +46,23 @@ const CurrencyInput: React.FC<CurrencyInputProps> = ({ amount, currency, onAmoun
         <div id="currency-input-desc" className={styles.srOnly}>
           Enter an amount and select a currency to convert from
         </div>
-        
-        <input 
-          type="text" 
+
+        <input
+          type="text"
           inputMode="decimal"
-          value={inputValue} 
-          onChange={handleInputChange} 
-          placeholder="0.00" 
-          className={styles.amountInput} 
-          aria-label="Amount to convert" 
+          value={inputValue}
+          onChange={handleInputChange}
+          placeholder="0.00"
+          className={styles.amountInput}
+          aria-label="Amount to convert"
           id="amount-input"
         />
-        
+
         <div className={styles.currencySelector}>
-          <label htmlFor="currency-select" className={styles.srOnly}>Select base currency</label>
-          <select 
-            id="currency-select"
-            value={currency} 
-            onChange={(e) => onCurrencyChange(e.target.value)} 
-            className={styles.currencySelect}
-          >
+          <label htmlFor="currency-select" className={styles.srOnly}>
+            Select base currency
+          </label>
+          <select id="currency-select" value={currency} onChange={(e) => onCurrencyChange(e.target.value)} className={styles.currencySelect}>
             {currencies.map((curr) => (
               <option key={curr} value={curr}>
                 {curr}

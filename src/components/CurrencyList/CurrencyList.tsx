@@ -49,16 +49,11 @@ const CurrencyItem: React.FC<CurrencyItemProps> = ({ currencyData, baseAmount })
   }, [currencyCode]);
 
   return (
-    <div 
-      className={styles.currencyItem}
-      tabIndex={0}
-      role="article"
-      aria-label={`${convertedValue} ${currencyCode}`}
-    >
+    <div className={styles.currencyItem} tabIndex={0} role="article" aria-label={`${convertedValue} ${currencyCode}`}>
       <div className={styles.iconContainer} ref={iconContainerRef} aria-hidden="true">
         {/* Fallback is always rendered by default */}
-        <div 
-          className={`${styles.fallbackIcon} ${styles[colorClassRef.current]}`} 
+        <div
+          className={`${styles.fallbackIcon} ${styles[colorClassRef.current]}`}
           style={{ display: imageLoaded ? "none" : "flex" }}
           aria-hidden="true"
         >
@@ -100,17 +95,11 @@ interface CurrencyListProps {
  */
 const CurrencyList: React.FC<CurrencyListProps> = ({ rates, baseAmount }) => {
   return (
-    <div 
-      className={styles.currencyList}
-      role="region" 
-      aria-label="Currency conversion results"
-    >
+    <div className={styles.currencyList} role="region" aria-label="Currency conversion results">
       {rates.length === 0 ? (
         <p className={styles.noResults}>No currency rates available</p>
       ) : (
-        rates.map((rate) => (
-          <CurrencyItem key={rate.pair} currencyData={rate} baseAmount={baseAmount} />
-        ))
+        rates.map((rate) => <CurrencyItem key={rate.pair} currencyData={rate} baseAmount={baseAmount} />)
       )}
     </div>
   );
