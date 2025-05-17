@@ -49,10 +49,19 @@ const CurrencyItem: React.FC<CurrencyItemProps> = ({ currencyData, baseAmount })
   }, [currencyCode]);
 
   return (
-    <div className={styles.currencyItem}>
-      <div className={styles.iconContainer} ref={iconContainerRef}>
+    <div 
+      className={styles.currencyItem}
+      tabIndex={0}
+      role="article"
+      aria-label={`${convertedValue} ${currencyCode}`}
+    >
+      <div className={styles.iconContainer} ref={iconContainerRef} aria-hidden="true">
         {/* Fallback is always rendered by default */}
-        <div className={`${styles.fallbackIcon} ${styles[colorClassRef.current]}`} style={{ display: imageLoaded ? "none" : "flex" }}>
+        <div 
+          className={`${styles.fallbackIcon} ${styles[colorClassRef.current]}`} 
+          style={{ display: imageLoaded ? "none" : "flex" }}
+          aria-hidden="true"
+        >
           {currencyCode.substring(0, 2).toUpperCase()}
         </div>
 
@@ -60,17 +69,20 @@ const CurrencyItem: React.FC<CurrencyItemProps> = ({ currencyData, baseAmount })
         <img
           ref={imgRef}
           src={`/currencyIcons/${currencyCode.toLowerCase()}.svg`}
-          alt={`${currencyCode} currency`}
+          alt="" // Changed to empty since it's decorative
           className={styles.currencyImage}
           style={{ display: "none" }}
+          aria-hidden="true"
         />
       </div>
 
       <div className={styles.contentContainer}>
-        <h4 className={styles.title} title={`${convertedValue} ${currencyCode}`}>
+        <h4 className={styles.title} id={`currency-amount-${currencyCode}`}>
           {convertedValue}
         </h4>
-        <p className={styles.description}>{currencyCode}</p>
+        <p className={styles.description} id={`currency-code-${currencyCode}`}>
+          {currencyCode}
+        </p>
       </div>
     </div>
   );
@@ -88,10 +100,18 @@ interface CurrencyListProps {
  */
 const CurrencyList: React.FC<CurrencyListProps> = ({ rates, baseAmount }) => {
   return (
-    <div className={styles.currencyList}>
-      {rates.map((rate) => (
-        <CurrencyItem key={rate.pair} currencyData={rate} baseAmount={baseAmount} />
-      ))}
+    <div 
+      className={styles.currencyList}
+      role="region" 
+      aria-label="Currency conversion results"
+    >
+      {rates.length === 0 ? (
+        <p className={styles.noResults}>No currency rates available</p>
+      ) : (
+        rates.map((rate) => (
+          <CurrencyItem key={rate.pair} currencyData={rate} baseAmount={baseAmount} />
+        ))
+      )}
     </div>
   );
 };

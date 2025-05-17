@@ -2,7 +2,6 @@ import Header from './components/Header/Header';
 import CurrencyConverter from './components/CurrencyConverter';
 import './App.module.scss';
 
-//TODO add aria
 //TODO testes
 //TODO check warnings
 //TODO input limit?
