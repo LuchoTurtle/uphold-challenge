@@ -1,35 +1,24 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Header from './components/Header/Header';
+import CurrencyConverter from './components/CurrencyConverter';
+import styles from './App.module.scss'; // Import as a module
 
+//TODO testes
+//TODO input limit?
+//TODO check file before submitting
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
+      <Header />
+      <main id="main-content" role="main" className={styles.main}>
+        <h1 tabIndex={-1} id="page-title">Currency Converter</h1>
+        <p className={"text-paragraph"}>
+          Unlock global currency conversion with confidence. We provide up-to-date exchange rates and a transparent fee structure, 
+          so you can compare and convert with peace of mind and no hidden charges.
         </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+        <CurrencyConverter />
+      </main>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

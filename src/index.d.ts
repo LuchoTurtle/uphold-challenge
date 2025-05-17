@@ -196,7 +196,7 @@
     version?: string
   }
 
-  export interface PaginationOptions extends PaginatorConstructorArgs {}
+  export type PaginationOptions = PaginatorConstructorArgs
 
   /** @link [Doc](https://uphold.com/en/developer/api/documentation/#account-object) */
   export interface Account {
@@ -299,7 +299,7 @@
   }
 
   // No info on this in the docs
-  export interface Document {}
+  export type Document = unknown
 
   /**
    * @link [Doc](https://uphold.com/en/developer/api/documentation/#phone-object)

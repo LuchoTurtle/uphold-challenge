@@ -60,3 +60,9 @@ export default tseslint.config({
 
 - talk about production considerations for CORS (using a  proxy backend with express or something)
 - could have used `zod` to validate the DATA from the Api since it it can return a single object or an array
+- montserrat is the closest font to the one used in the original design
+- added all the styles from the brand guide from link.
+- used CSS modules instead of styled components to keep it simpler and have CSS guidelines be more visible
+- downloaded icons from `https://github.com/spothq/cryptocurrency-icons/tree/master/svg/color` 
+- could have virtualized and could have fixed the height and width of the items but decided against it, it wasn't really relevant. Decided to sticky the header instead.
+#

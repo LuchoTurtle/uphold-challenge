@@ -1,0 +1,155 @@
+@use "sass:color";
+
+@use "../../styles/variables" as *;
+
+.currencyList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: $space-xs;
+  margin-top: $space-md;
+}
+
+.currencyItem {
+  position: relative;
+  width: 100%;
+  max-width: $container-sm;
+  margin: 0 auto;
+  padding: $space-xs;
+  border-radius: $space-xs;
+  background-color: $color-base-white;
+  display: flex;
+  align-items: center;
+  gap: $space-xs;
+  box-shadow: 0 2px 4px rgba($color-neutral, 0.1);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba($color-neutral, 0.15);
+  }
+
+  @include dark-mode {
+    background-color: transparent;
+    backdrop-filter: blur(8px);
+    border: 1px solid color.adjust($dark-background-color, $lightness: 10%, $space: hsl);
+    box-shadow: 0 -20px 80px -20px color.adjust($dark-background-color, $lightness: 12%, $space: hsl) inset;
+  }
+}
+
+.iconContainer {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: $color-primary-light;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.currencyImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fallbackIcon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: $font-size-base;
+  text-transform: uppercase;
+  color: $text-color;
+
+  @include dark-mode {
+    color: $dark-text-color;
+  }
+
+  // Color variants for light mode
+  &.color1 {
+    background-color: $color-fallback-blue-light;
+
+    @include dark-mode {
+      background-color: $color-fallback-blue-dark;
+    }
+  }
+
+  &.color2 {
+    background-color: $color-fallback-green-light;
+
+    @include dark-mode {
+      background-color: $color-fallback-green-dark;
+    }
+  }
+
+  &.color3 {
+    background-color: $color-fallback-red-light;
+
+    @include dark-mode {
+      background-color: $color-fallback-red-dark;
+    }
+  }
+
+  &.color4 {
+    background-color: $color-fallback-yellow-light;
+
+    @include dark-mode {
+      background-color: $color-fallback-yellow-dark;
+    }
+  }
+
+  &.color5 {
+    background-color: $color-fallback-purple-light;
+
+    @include dark-mode {
+      background-color: $color-fallback-purple-dark;
+    }
+  }
+}
+
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.title {
+  font-size: $font-size-lg;
+  font-weight: 500;
+  margin-bottom: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+  @include dark-mode {
+    color: $dark-text-color;
+  }
+}
+
+.description {
+  font-size: $font-size-base;
+  font-weight: normal;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  color: rgba($text-color, 0.7);
+
+  @include dark-mode {
+    color: rgba($dark-text-color, 0.7);
+  }
+}
+
+@media (min-width: $breakpoint-sm) {
+  .iconContainer {
+    width: 48px;
+    height: 48px;
+  }
+}

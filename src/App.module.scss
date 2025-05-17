@@ -1,0 +1,14 @@
+@use "./styles/variables" as *;
+
+main {
+  width: 100%;
+  max-width: $container-md;
+  margin: $space-xs auto;
+  padding: $space-xs;
+  background-color: $background-color;
+  border-radius: 8px;
+
+  @include dark-mode {
+    background-color: $dark-background-color;
+  }
+}

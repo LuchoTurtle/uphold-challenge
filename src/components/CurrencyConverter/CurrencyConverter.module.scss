@@ -1,0 +1,134 @@
+@use "sass:color";
+
+@use "../../styles/variables" as *;
+@use "../../styles/accessability";
+
+.container {
+  width: 100%;
+}
+
+.error {
+  padding: $space-md;
+  color: $error-color;
+
+  @include dark-mode {
+    color: color.adjust($error-color, $lightness: 10%, $space: hsl);
+  }
+}
+
+// Loading skeleton styles
+@keyframes shimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+.skeletonContainer {
+  width: 100%;
+}
+
+.skeletonInput {
+  display: flex;
+  align-items: center;
+  padding: $space-xs;
+  background-color: $skeleton-bg-light;
+  border-radius: 8px;
+  margin-bottom: $space-xs;
+  height: 56px;
+
+  @include dark-mode {
+    background-color: $skeleton-bg-dark;
+  }
+}
+
+.skeletonAmount {
+  height: 28px;
+  width: 120px;
+  background: linear-gradient(to right, $skeleton-gradient-start-light 8%, $skeleton-gradient-mid-light 18%, $skeleton-gradient-start-light 33%);
+  background-size: 800px 100px;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: 4px;
+  margin-right: auto;
+
+  @include dark-mode {
+    background: linear-gradient(to right, $skeleton-gradient-start-dark 8%, $skeleton-gradient-mid-dark 18%, $skeleton-gradient-start-dark 33%);
+  }
+}
+
+.skeletonCurrency {
+  height: 28px;
+  width: 70px;
+  background: linear-gradient(to right, $skeleton-gradient-start-light 8%, $skeleton-gradient-mid-light 18%, $skeleton-gradient-start-light 33%);
+  background-size: 800px 100px;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: 4px;
+
+  @include dark-mode {
+    background: linear-gradient(to right, $skeleton-gradient-start-dark 8%, $skeleton-gradient-mid-dark 18%, $skeleton-gradient-start-dark 33%);
+  }
+}
+
+.skeletonList {
+  margin-top: $space-md;
+}
+
+.skeletonItem {
+  display: flex;
+  align-items: center;
+  padding: $space-2xs;
+  margin-bottom: $space-2xs;
+  background-color: $skeleton-bg-light;
+  border-radius: 8px;
+
+  @include dark-mode {
+    background-color: $skeleton-bg-dark;
+  }
+}
+
+.skeletonIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(to right, $skeleton-gradient-start-light 8%, $skeleton-gradient-mid-light 18%, $skeleton-gradient-start-light 33%);
+  background-size: 800px 100px;
+  animation: shimmer 1.5s infinite linear;
+  margin-right: $space-2xs;
+
+  @include dark-mode {
+    background: linear-gradient(to right, $skeleton-gradient-start-dark 8%, $skeleton-gradient-mid-dark 18%, $skeleton-gradient-start-dark 33%);
+  }
+}
+
+.skeletonContent {
+  flex: 1;
+}
+
+.skeletonTitle {
+  height: 20px;
+  width: 100px;
+  background: linear-gradient(to right, $skeleton-gradient-start-light 8%, $skeleton-gradient-mid-light 18%, $skeleton-gradient-start-light 33%);
+  background-size: 800px 100px;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: 4px;
+  margin-bottom: $space-2xs;
+
+  @include dark-mode {
+    background: linear-gradient(to right, $skeleton-gradient-start-dark 8%, $skeleton-gradient-mid-dark 18%, $skeleton-gradient-start-dark 33%);
+  }
+}
+
+.skeletonSubtitle {
+  height: 16px;
+  width: 60px;
+  background: linear-gradient(to right, $skeleton-gradient-start-light 8%, $skeleton-gradient-mid-light 18%, $skeleton-gradient-start-light 33%);
+  background-size: 800px 100px;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: 4px;
+
+  @include dark-mode {
+    background: linear-gradient(to right, $skeleton-gradient-start-dark 8%, $skeleton-gradient-mid-dark 18%, $skeleton-gradient-start-dark 33%);
+  }
+}
