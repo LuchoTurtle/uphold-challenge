@@ -3,8 +3,6 @@ import CurrencyConverter from './components/CurrencyConverter';
 import styles from './App.module.scss'; // Import as a module
 
 //TODO testes
-//TODO input limit?
-//TODO check file before submitting
 function App() {
   return (
     <>
