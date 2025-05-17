@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Header.module.scss';
 import darkLogo from '../../assets/uphold-horizontal-dark.svg';
 import lightLogo from '../../assets/uphold-horizontal-light.svg';
-import { useTheme } from '../../hooks/useTheme';
+import { useTheme } from '../../hooks';
 
 const Header: React.FC = () => {
   // Use the theme context instead of local state

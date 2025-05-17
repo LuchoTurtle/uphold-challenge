@@ -4,11 +4,16 @@ import CurrencyList from "../CurrencyList/CurrencyList";
 import styles from "./CurrencyConverter.module.scss";
 import { useCurrencyConverter } from "../../hooks";
 
+/**
+ * Currency converter component.
+ * It handles all the state and logic with the input and the list of converted rates in other currencies.
+ * @returns component with input and list of converted currency pairs.
+ */
 const CurrencyConverter: React.FC = () => {
-  const { amount, baseCurrency, rates, currencies, loading, loadingCurrencies, error, handleAmountChange, handleCurrencyChange } =
+  const { amount, baseCurrency, rates, currencies, loadingPairs, loadingCurrencies, error, handleAmountChange, handleCurrencyChange } =
     useCurrencyConverter("USD");
 
-  // Loading input state - show a skeleton loader
+  // Show skeleton loader when loading the currencies to fill the input
   if (loadingCurrencies) {
     return (
       <div className={styles.container}>
@@ -23,18 +28,18 @@ const CurrencyConverter: React.FC = () => {
     );
   }
 
-  // Error state - show error message and don't render the component
+  // Error state
   if (error || currencies.length === 0) {
     return (
       <div className={styles.container}>
-        <div className={styles.error}>{error ? `Error: ${error.message}` : "No currencies available. Please try again later."}</div>
+        <h4 className={styles.error}>{error ? `Error: ${error.message}` : "No currencies available. Please try again later."}</h4>
       </div>
     );
   }
 
   // Only render the component when currencies are successfully loaded
   return (
-    <div>
+    <>
       <CurrencyInput
         amount={amount}
         currency={baseCurrency}
@@ -43,7 +48,7 @@ const CurrencyConverter: React.FC = () => {
         currencies={currencies}
       />
 
-      {loading && (
+      {loadingPairs && (
         <div className={styles.skeletonList}>
           {Array(5)
             .fill(null)
@@ -58,8 +63,8 @@ const CurrencyConverter: React.FC = () => {
             ))}
         </div>
       )}
-      {!loading && <CurrencyList rates={rates} baseAmount={amount} />}
-    </div>
+      {!loadingPairs && <CurrencyList rates={rates} baseAmount={amount} />}
+    </>
   );
 };
 

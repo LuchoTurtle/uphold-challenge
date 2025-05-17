@@ -1,4 +1,4 @@
-@use '../../styles/variables' as *;
+@use "../../styles/variables" as *;
 
 .currencyInputContainer {
   margin-bottom: $space-md;
@@ -10,33 +10,32 @@
   align-items: stretch;
   border-radius: 12px;
   overflow: hidden;
-  background-color: darken($background-color, 5%); // Light gray background for light mode
-  
+  background-color: darken($background-color, 5%);
+
   @include dark-mode {
-    background-color: lighten($dark-background-color, 3%); // Slightly lighter than dark background
+    background-color: lighten($dark-background-color, 3%);
   }
 }
 
 .amountInput {
   flex: 1;
-  min-width: 0; 
+  min-width: 0;
   padding: $space-xs $space-sm;
   font-size: $font-size-xl;
   font-weight: 500;
   border: none;
   outline: none;
   min-height: 56px;
-  background-color: transparent; // Use transparent to show parent background
+  background-color: transparent;
   color: $text-color;
   text-overflow: ellipsis;
-  
+
   @include dark-mode {
     color: $dark-text-color;
   }
-  
+
   &::placeholder {
     color: rgba($text-color, 0.5);
-    
     @include dark-mode {
       color: rgba($dark-text-color, 0.5);
     }
@@ -48,9 +47,9 @@
   flex: 0 0 auto;
   width: 100px;
   background-color: $color-primary;
-  
+
   @include dark-mode {
-    background-color: lighten($dark-background-color, 10%); // Darker green for better contrast
+    background-color: lighten($dark-background-color, 10%);
   }
 }
 
@@ -74,9 +73,9 @@
   padding: 0 $space-xs;
   color: $color-base-white;
   font-weight: 600;
-  
+
   @include dark-mode {
-    color: $dark-text-color;
+    color: $dark-color-primary;
   }
 }
 
@@ -84,36 +83,36 @@
   font-size: $font-size-lg;
 }
 
-// Responsive adjustments
+// Responsive adjustments for input and selector
 @media (min-width: $breakpoint-sm) {
   .currencySelector {
-    width: 120px; // Slightly larger on bigger screens
+    width: 120px;
   }
-  
+
   .amountInput {
     padding: $space-sm;
     font-size: $font-size-2xl;
   }
-  
+
   .displayedCurrency {
     padding: 0 $space-sm;
   }
-  
+
   .currencyCode {
     font-size: $font-size-xl;
   }
 }
 
-// Add a dropdown indicator
+// Add a dropdown indicator after selector
 .displayedCurrency::after {
-  content: '';
+  content: "";
   display: inline-block;
   margin-left: $space-2xs;
   border-top: 4px solid $color-base-white;
   border-right: 4px solid transparent;
   border-left: 4px solid transparent;
-  
+
   @include dark-mode {
-    opacity: 0.9; // Slightly reduce opacity in dark mode for better integration
+    border-top-color: $dark-color-primary;
   }
 }

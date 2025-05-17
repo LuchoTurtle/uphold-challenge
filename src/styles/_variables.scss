@@ -62,6 +62,14 @@ $container-md: 768px;
 $container-lg: 1024px;
 $container-xl: 1280px;
 
+// Skeleton UI colors
+$skeleton-bg-light: rgba(0, 0, 0, 0.03);
+$skeleton-bg-dark: rgba(255, 255, 255, 0.05);
+$skeleton-gradient-start-light: #f0f0f0;
+$skeleton-gradient-mid-light: #e0e0e0;
+$skeleton-gradient-start-dark: #333333;
+$skeleton-gradient-mid-dark: #3a3a3a;
+
 // Dark mode mixin
 @mixin dark-mode {
   [data-theme="dark"] & {

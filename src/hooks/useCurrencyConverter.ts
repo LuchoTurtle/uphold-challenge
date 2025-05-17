@@ -15,7 +15,7 @@ export interface CurrencyConverterHook {
   rates: Rate[];
   currencies: string[];
   loadingCurrencies: boolean;
-  loading: boolean;
+  loadingPairs: boolean;
   error: Error | null;
   handleAmountChange: (amount: string) => void;
   handleCurrencyChange: (currency: string) => void;
@@ -75,7 +75,7 @@ export default function useCurrencyConverter(initialCurrency = "USD"): CurrencyC
     baseCurrency,
     rates,
     currencies,
-    loading: ratesLoading,
+    loadingPairs: ratesLoading,
     loadingCurrencies,
     error: error as Error | null,
     handleAmountChange,
