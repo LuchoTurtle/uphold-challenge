@@ -1,4 +1,5 @@
 @use "../../styles/variables" as *;
+@use "../../styles/accessability";
 
 .currencyInputContainer {
   margin-bottom: $space-md;
@@ -11,6 +12,12 @@
   border-radius: 12px;
   overflow: hidden;
   background-color: darken($background-color, 5%);
+
+  // Removing default fieldset styles
+  border: none;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
 
   @include dark-mode {
     background-color: lighten($dark-background-color, 3%);

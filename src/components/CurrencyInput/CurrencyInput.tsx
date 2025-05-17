@@ -41,21 +41,42 @@ const CurrencyInput: React.FC<CurrencyInputProps> = ({ amount, currency, onAmoun
 
   return (
     <div className={styles.currencyInputContainer}>
-      <div className={styles.currencyRow}>
-        <input type="text" value={inputValue} onChange={handleInputChange} placeholder="0.00" className={styles.amountInput} aria-label="Amount" />
+      <fieldset className={styles.currencyRow} aria-describedby="currency-input-desc">
+        <legend className={styles.srOnly}>Currency Converter Input</legend>
+        <div id="currency-input-desc" className={styles.srOnly}>
+          Enter an amount and select a currency to convert from
+        </div>
+        
+        <input 
+          type="text" 
+          inputMode="decimal"
+          value={inputValue} 
+          onChange={handleInputChange} 
+          placeholder="0.00" 
+          className={styles.amountInput} 
+          aria-label="Amount to convert" 
+          id="amount-input"
+        />
+        
         <div className={styles.currencySelector}>
-          <select value={currency} onChange={(e) => onCurrencyChange(e.target.value)} className={styles.currencySelect} aria-label="Select currency">
+          <label htmlFor="currency-select" className={styles.srOnly}>Select base currency</label>
+          <select 
+            id="currency-select"
+            value={currency} 
+            onChange={(e) => onCurrencyChange(e.target.value)} 
+            className={styles.currencySelect}
+          >
             {currencies.map((curr) => (
               <option key={curr} value={curr}>
                 {curr}
               </option>
             ))}
           </select>
-          <div className={styles.displayedCurrency}>
+          <div className={styles.displayedCurrency} aria-hidden="true">
             <span className={styles.currencyCode}>{currency}</span>
           </div>
         </div>
-      </div>
+      </fieldset>
     </div>
   );
 };
