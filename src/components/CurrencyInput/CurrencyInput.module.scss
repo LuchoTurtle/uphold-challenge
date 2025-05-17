@@ -51,6 +51,18 @@
   }
 }
 
+.inputErrorText {
+  margin-top: $space-2xs;
+
+  span {
+    color: $error-color;
+
+    @include dark-mode {
+      color: lighten($error-color, 10%);
+    }
+  }
+}
+
 .currencySelector {
   position: relative;
   flex: 0 0 auto;

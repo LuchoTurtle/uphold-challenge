@@ -10,6 +10,8 @@ interface CurrencyInputProps {
   currencies: string[];
 }
 
+const MAX_VALUE = 1000000000; // 1 billion
+
 /**
  * Currency input component. It has an input and a selector to change the currency that is being converted from.
  * @param CurrencyInputProps with the amount being `input` and the `currency` that is selected, alongside with the list of `currencies` that are supported.
@@ -17,6 +19,7 @@ interface CurrencyInputProps {
  */
 const CurrencyInput: React.FC<CurrencyInputProps> = ({ amount, currency, onAmountChange, onCurrencyChange, currencies }) => {
   const [inputValue, setInputValue] = useState(amount);
+  const [inputError, setInputError] = useState("");
   const debouncedAmount = useDebounce(inputValue, 500);
 
   // Update the controlled input when external amount changes
@@ -34,8 +37,18 @@ const CurrencyInput: React.FC<CurrencyInputProps> = ({ amount, currency, onAmoun
   // Handle input changes locally first
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
+    setInputError(""); // Clear previous errors
+
+    // Only allow numbers with optional decimal point
     if (value === "" || /^[0-9]*\.?[0-9]*$/.test(value)) {
-      setInputValue(value);
+      const numValue = parseFloat(value);
+
+      if (value === "" || isNaN(numValue) || numValue <= MAX_VALUE) {
+        setInputValue(value);
+      } else {
+        setInputError(`Value cannot exceed ${MAX_VALUE.toLocaleString()}`);
+        setInputValue(MAX_VALUE.toString());
+      }
     }
   };
 
@@ -74,6 +87,12 @@ const CurrencyInput: React.FC<CurrencyInputProps> = ({ amount, currency, onAmoun
           </div>
         </div>
       </fieldset>
+
+      {inputError && (
+        <div className={`${styles.inputErrorText} text-tag`} role="alert">
+          <span >{inputError}</span>
+        </div>
+      )}
     </div>
   );
 };
