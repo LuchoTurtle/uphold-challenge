@@ -1,3 +1,5 @@
+@use "sass:color";
+
 @use "../../styles/variables" as *;
 @use "../../styles/accessability";
 
@@ -10,7 +12,7 @@
   color: $error-color;
 
   @include dark-mode {
-    color: lighten($error-color, 10%);
+    color: color.adjust($error-color, $lightness: 10%, $space: hsl);
   }
 }
 

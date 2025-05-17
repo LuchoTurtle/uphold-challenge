@@ -3,7 +3,6 @@ import CurrencyConverter from './components/CurrencyConverter';
 import './App.module.scss';
 
 //TODO testes
-//TODO check warnings
 //TODO input limit?
 //TODO check file before submitting
 //TODO SCSS files to be nested and shi
