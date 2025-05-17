@@ -11,6 +11,7 @@ const CurrencyItem: React.FC<CurrencyItemProps> = ({ currencyData, baseAmount })
   const [imageLoaded, setImageLoaded] = useState(false);
   const iconContainerRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
+  const colorClassRef = useRef<string>(`color${Math.floor(Math.random() * 5) + 1}`);
   
   const convertedValue = baseAmount 
     ? parseFloat((parseFloat(baseAmount) * parseFloat(currencyData.ask)).toFixed(2))
@@ -30,9 +31,6 @@ const CurrencyItem: React.FC<CurrencyItemProps> = ({ currencyData, baseAmount })
   }, []);
 
   const currencyCode = extractCurrencyCode(currencyData.pair, currencyData.currency);
-  
-  // Generate a random color class (1-5)
-  const colorClass = `color${Math.floor(Math.random() * 5) + 1}`;
   
   // Preload the image to check if it exists
   useEffect(() => {
@@ -59,7 +57,7 @@ const CurrencyItem: React.FC<CurrencyItemProps> = ({ currencyData, baseAmount })
       <div className={styles.iconContainer} ref={iconContainerRef}>
         {/* Fallback is always rendered by default */}
         <div 
-          className={`${styles.fallbackIcon} ${styles[colorClass]}`}
+          className={`${styles.fallbackIcon} ${styles[colorClassRef.current]}`}
           style={{ display: imageLoaded ? 'none' : 'flex' }}
         >
           {currencyCode.substring(0, 2).toUpperCase()}
@@ -77,7 +75,7 @@ const CurrencyItem: React.FC<CurrencyItemProps> = ({ currencyData, baseAmount })
       <div className={styles.contentContainer}>
         <h4 
           className={styles.title}
-          title={`${convertedValue} ${currencyCode}`} // Native tooltip shows full value with currency
+          title={`${convertedValue} ${currencyCode}`}
         >
           {convertedValue}
         </h4>
