@@ -9,7 +9,6 @@
     position: sticky;
     top: 0;
     background: $color-base-white;
-    padding: $space-2xs 0;
     z-index: 10;
     
     @include dark-mode {
@@ -83,9 +82,6 @@
 // Media queries for responsive sizing
 @media (min-width: $breakpoint-sm) {
   .currencyInputContainer {
-    .currencyInputField {
-      padding: $space-xs 0;
-    }
     
     .amountInput, 
     .currencySelector .selectedCurrency .currencySelect {
@@ -98,9 +94,6 @@
 
 @media (min-width: $breakpoint-md) {
   .currencyInputContainer {
-    .currencyInputField {
-      padding: $space-md 0;
-    }
     
     .amountInput, 
     .currencySelector .selectedCurrency .currencySelect {

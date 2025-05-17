@@ -8,12 +8,17 @@ const CurrencyConverter: React.FC = () => {
   const { amount, baseCurrency, rates, currencies, loading, loadingCurrencies, error, handleAmountChange, handleCurrencyChange } =
     useCurrencyConverter("USD");
 
-  // Loading state - show a spinner or loading message
+  // Loading input state - show a skeleton loader
   if (loadingCurrencies) {
     return (
       <div className={styles.container}>
-        <h1 className={styles.title}>Currency Converter</h1>
-        <div className={styles.loading}>Loading currencies...</div>
+        <div className={styles.skeletonContainer}>
+          {/* Skeleton for currency input */}
+          <div className={styles.skeletonInput}>
+            <div className={styles.skeletonAmount}></div>
+            <div className={styles.skeletonCurrency}></div>
+          </div>
+        </div>
       </div>
     );
   }
@@ -22,7 +27,6 @@ const CurrencyConverter: React.FC = () => {
   if (error || currencies.length === 0) {
     return (
       <div className={styles.container}>
-        <h1 className={styles.title}>Currency Converter</h1>
         <div className={styles.error}>{error ? `Error: ${error.message}` : "No currencies available. Please try again later."}</div>
       </div>
     );
@@ -39,7 +43,21 @@ const CurrencyConverter: React.FC = () => {
         currencies={currencies}
       />
 
-      {loading && <div className={styles.loading}>Loading rates...</div>}
+      {loading && (
+        <div className={styles.skeletonList}>
+          {Array(5)
+            .fill(null)
+            .map((_, index) => (
+              <div key={index} className={styles.skeletonItem}>
+                <div className={styles.skeletonIcon}></div>
+                <div className={styles.skeletonContent}>
+                  <div className={styles.skeletonTitle}></div>
+                  <div className={styles.skeletonSubtitle}></div>
+                </div>
+              </div>
+            ))}
+        </div>
+      )}
       {!loading && <CurrencyList rates={rates} baseAmount={amount} />}
     </div>
   );

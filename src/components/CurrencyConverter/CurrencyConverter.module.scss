@@ -1,50 +1,137 @@
 @use '../../styles/variables' as *;
 
+.container {
+  width: 100%;
+}
 
-.loading,
 .error {
+  padding: $space-md;
+  color: $error-color; // Changed from $color-error
   text-align: center;
+  
+  @include dark-mode {
+    color: lighten($error-color, 10%);
+  }
+}
+
+.title {
+  text-align: center;
+  margin-bottom: $space-md;
+}
+
+/* Skeleton Loading Styles */
+@keyframes shimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+.skeletonContainer {
+  width: 100%;
+}
+
+.skeletonInput {
+  display: flex;
+  align-items: center;
+  padding: $space-xs;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-radius: 8px;
+  margin-bottom: $space-xs;
+  height: 56px;
+  
+  @include dark-mode {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+}
+
+.skeletonAmount {
+  height: 28px;
+  width: 120px;
+  background: linear-gradient(to right, #f0f0f0 8%, #e0e0e0 18%, #f0f0f0 33%);
+  background-size: 800px 100px;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: 4px;
+  margin-right: auto;
+  
+  @include dark-mode {
+    background: linear-gradient(to right, #333 8%, #3a3a3a 18%, #333 33%);
+  }
+}
+
+.skeletonCurrency {
+  height: 28px;
+  width: 70px;
+  background: linear-gradient(to right, #f0f0f0 8%, #e0e0e0 18%, #f0f0f0 33%);
+  background-size: 800px 100px;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: 4px;
+  
+  @include dark-mode {
+    background: linear-gradient(to right, #333 8%, #3a3a3a 18%, #333 33%);
+  }
+}
+
+.skeletonList {
+  margin-top: $space-md;
+}
+
+.skeletonItem {
+  display: flex;
+  align-items: center;
   padding: $space-2xs;
-}
-
-.error {
-  color: $error-color;
-}
-
-@media (min-width: $breakpoint-sm) {
-  .container {
-    margin: $space-md auto;
-    padding: $space-md;
-  }
-
-  .title {
-    margin-bottom: $space-sm;
+  margin-bottom: $space-2xs;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-radius: 8px;
+  
+  @include dark-mode {
+    background-color: rgba(255, 255, 255, 0.05);
   }
 }
 
-@media (min-width: $breakpoint-md) {
-  .container {
-    margin: $space-xl auto;
-    padding: $space-lg;
-  }
-
-  .title {
-    font-size: $font-size-4xl;
-    line-height: $leading-4xl;
-    margin-bottom: $space-md;
-  }
-}
-
-@media (min-width: $breakpoint-lg) {
-  .container {
-    margin: $space-2xl auto;
-    padding: $space-xl;
+.skeletonIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(to right, #f0f0f0 8%, #e0e0e0 18%, #f0f0f0 33%);
+  background-size: 800px 100px;
+  animation: shimmer 1.5s infinite linear;
+  margin-right: $space-2xs;
+  
+  @include dark-mode {
+    background: linear-gradient(to right, #333 8%, #3a3a3a 18%, #333 33%);
   }
 }
 
-@media (min-width: $breakpoint-xl) {
-  .container {
-    margin: $space-2xl + $space-xl auto;
-    padding: $space-lg;
+.skeletonContent {
+  flex: 1;
+}
+
+.skeletonTitle {
+  height: 20px;
+  width: 100px;
+  background: linear-gradient(to right, #f0f0f0 8%, #e0e0e0 18%, #f0f0f0 33%);
+  background-size: 800px 100px;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: 4px;
+  margin-bottom: $space-2xs;
+  
+  @include dark-mode {
+    background: linear-gradient(to right, #333 8%, #3a3a3a 18%, #333 33%);
+  }
+}
+
+.skeletonSubtitle {
+  height: 16px;
+  width: 60px;
+  background: linear-gradient(to right, #f0f0f0 8%, #e0e0e0 18%, #f0f0f0 33%);
+  background-size: 800px 100px;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: 4px;
+  
+  @include dark-mode {
+    background: linear-gradient(to right, #333 8%, #3a3a3a 18%, #333 33%);
   }
 }

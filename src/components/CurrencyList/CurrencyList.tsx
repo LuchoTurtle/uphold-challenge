@@ -73,7 +73,7 @@ const CurrencyItem: React.FC<CurrencyItemProps> = ({ currencyData, baseAmount })
         />
       </div>
       <div className={styles.contentContainer}>
-        <h4 
+        <h4
           className={styles.title}
           title={`${convertedValue} ${currencyCode}`}
         >
