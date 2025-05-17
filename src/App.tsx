@@ -4,7 +4,6 @@ import './App.module.scss'
 
 //TODO add aria
 //TODO testes
-//TODO check code 
 //TODO icon no topo da tab (html)
 //TODO check warnings
 //TODO input limit?

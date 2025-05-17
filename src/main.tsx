@@ -5,15 +5,7 @@ import App from "./App.tsx";
 import "./styles/global.scss";
 import { ThemeProvider } from "./context/ThemeProvider.tsx";
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      retry: 1,
-      retryDelay: 6000,
-      refetchOnWindowFocus: false,
-    },
-  },
-});
+const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

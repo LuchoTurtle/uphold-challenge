@@ -10,7 +10,7 @@ import { useCurrencyConverter } from "../../hooks";
  * @returns component with input and list of converted currency pairs.
  */
 const CurrencyConverter: React.FC = () => {
-  const { amount, baseCurrency, rates, currencies, loadingPairs, loadingCurrencies, error, handleAmountChange, handleCurrencyChange } =
+  const { amount, baseCurrency, rates, currencies, loadingRates, loadingCurrencies, error, handleAmountChange, handleCurrencyChange } =
     useCurrencyConverter("USD");
 
   // Show skeleton loader when loading the currencies to fill the input
@@ -48,7 +48,7 @@ const CurrencyConverter: React.FC = () => {
         currencies={currencies}
       />
 
-      {loadingPairs && (
+      {loadingRates && (
         <div className={styles.skeletonList}>
           {Array(5)
             .fill(null)
@@ -63,7 +63,7 @@ const CurrencyConverter: React.FC = () => {
             ))}
         </div>
       )}
-      {!loadingPairs && <CurrencyList rates={rates} baseAmount={amount} />}
+      {!loadingRates && <CurrencyList rates={rates} baseAmount={amount} />}
     </>
   );
 };
