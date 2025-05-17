@@ -2,7 +2,6 @@ import Header from './components/Header/Header';
 import CurrencyConverter from './components/CurrencyConverter';
 import styles from './App.module.scss'; // Import as a module
 
-//TODO testes
 function App() {
   return (
     <>
