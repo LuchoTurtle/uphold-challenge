@@ -10,26 +10,29 @@
   align-items: stretch;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); // Subtle shadow
+  background-color: #f5f7fa; // Light gray background for light mode
   
   @include dark-mode {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    background-color: lighten($dark-background-color, 3%); // Slightly lighter than dark background
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); // Slightly stronger shadow for dark mode
   }
 }
 
 .amountInput {
-  flex: 2;
+  flex: 1;
+  min-width: 0; 
   padding: $space-xs $space-sm;
   font-size: $font-size-xl;
   font-weight: 500;
   border: none;
   outline: none;
   min-height: 56px;
-  background-color: $color-base-white;
+  background-color: transparent; // Use transparent to show parent background
   color: $text-color;
+  text-overflow: ellipsis;
   
   @include dark-mode {
-    background-color: $dark-background-color;
     color: $dark-text-color;
   }
   
@@ -44,9 +47,9 @@
 
 .currencySelector {
   position: relative;
-  flex: 1;
+  flex: 0 0 auto;
+  width: 100px;
   background-color: $color-primary;
-  min-width: 100px;
   
   @include dark-mode {
     background-color: $color-primary-dark;
@@ -81,6 +84,10 @@
 
 // Responsive adjustments
 @media (min-width: $breakpoint-sm) {
+  .currencySelector {
+    width: 120px; // Slightly larger on bigger screens
+  }
+  
   .amountInput {
     padding: $space-sm;
     font-size: $font-size-2xl;
