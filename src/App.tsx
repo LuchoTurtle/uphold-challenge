@@ -1,6 +1,6 @@
 import Header from './components/Header/Header';
 import CurrencyConverter from './components/CurrencyConverter';
-import './App.module.scss';
+import styles from './App.module.scss'; // Import as a module
 
 //TODO testes
 //TODO input limit?
@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <Header />
-      <main id="main-content" role="main">
+      <main id="main-content" role="main" className={styles.main}>
         <h1 tabIndex={-1} id="page-title">Currency Converter</h1>
         <p className={"text-paragraph"}>
           Unlock global currency conversion with confidence. We provide up-to-date exchange rates and a transparent fee structure, 
