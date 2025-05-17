@@ -21,7 +21,7 @@ export interface CurrencyConverterHook {
   handleCurrencyChange: (currency: string) => void;
 }
 
-export const useCurrencyConverter = (initialCurrency = "USD"): CurrencyConverterHook => {
+export default function useCurrencyConverter(initialCurrency = "USD"): CurrencyConverterHook {
   const [amount, setAmount] = useState<string>("");
   const [baseCurrency, setBaseCurrency] = useState<string>(initialCurrency);
   

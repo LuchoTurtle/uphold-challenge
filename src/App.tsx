@@ -3,9 +3,7 @@ import CurrencyConverter from './components/CurrencyConverter';
 import './App.module.scss'
 
 //TODO add aria
-//TODO icon no topo da tab
 //TODO testes
-//TODO import from barrel files
 function App() {
   return (
     <>

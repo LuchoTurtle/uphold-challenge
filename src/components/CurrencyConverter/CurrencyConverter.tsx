@@ -1,8 +1,8 @@
 import React from "react";
-import { useCurrencyConverter } from "../../hooks/useCurrencyConverter";
 import CurrencyInput from "../CurrencyInput/CurrencyInput";
 import CurrencyList from "../CurrencyList/CurrencyList";
 import styles from "./CurrencyConverter.module.scss";
+import { useCurrencyConverter } from "../../hooks";
 
 const CurrencyConverter: React.FC = () => {
   const { amount, baseCurrency, rates, currencies, loading, loadingCurrencies, error, handleAmountChange, handleCurrencyChange } =
