@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./CurrencyList.module.scss";
 import type { Rate } from "../../hooks/useCurrencyConverter";
 
@@ -10,7 +10,7 @@ interface CurrencyItemProps {
 /**
  * List item that renders the converted currency pair with the chosen currency, alongside the icon and the label of the currency pair.
  * @param CurrentyItemProps receives a `rate` object and the base amount that we want to convert from
- * @returns
+ * @returns rendered currency item with the icon and the label of the currency pair.
  */
 const CurrencyItem: React.FC<CurrencyItemProps> = ({ currencyData, baseAmount }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -26,19 +26,7 @@ const CurrencyItem: React.FC<CurrencyItemProps> = ({ currencyData, baseAmount })
       })
     : "0.00";
 
-  // Extract the correct currency code
-  const extractCurrencyCode = useCallback((pair: string, currency: string): string => {
-    if (pair.includes("-")) {
-      // Format: "XCH-USD"
-      const [first] = pair.split("-");
-      return first;
-    } else {
-      // Format: "XAUUSD"
-      return pair.substring(0, pair.length - currency.length);
-    }
-  }, []);
-
-  const currencyCode = extractCurrencyCode(currencyData.pair, currencyData.currency);
+  const currencyCode = currencyData.pairedCurrency;
 
   // Preload the image to check if it exists
   useEffect(() => {
@@ -77,6 +65,7 @@ const CurrencyItem: React.FC<CurrencyItemProps> = ({ currencyData, baseAmount })
           style={{ display: "none" }}
         />
       </div>
+
       <div className={styles.contentContainer}>
         <h4 className={styles.title} title={`${convertedValue} ${currencyCode}`}>
           {convertedValue}
@@ -92,6 +81,11 @@ interface CurrencyListProps {
   baseAmount: string;
 }
 
+/**
+ * List of currency items that are being converted from the base amount.
+ * @param CurrencyListProps receives a list of `rates` and the base amount that we want to convert from.
+ * @returns rendered list of currency items with the icon and the label of the currency pair.
+ */
 const CurrencyList: React.FC<CurrencyListProps> = ({ rates, baseAmount }) => {
   return (
     <div className={styles.currencyList}>

@@ -6,7 +6,6 @@ import './App.module.scss'
 //TODO testes
 //TODO check code 
 //TODO icon no topo da tab (html)
-//TODO duplicated code (no format)
 //TODO check warnings
 //TODO input limit?
 //TODO check file before submitting

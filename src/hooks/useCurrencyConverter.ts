@@ -1,13 +1,9 @@
 import { useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { getAllCurrencies, getCurrencyRates } from "../services/upholdService";
+import { getAllCurrencies, getCurrencyRates, type EnhancedTicker } from "../services/upholdService";
 
-export interface Rate {
-  currency: string;
-  pair: string;
-  ask: string;
-  bid: string;
-}
+// Update type to use EnhancedTicker
+export type Rate = EnhancedTicker;
 
 export interface CurrencyConverterHook {
   amount: string;

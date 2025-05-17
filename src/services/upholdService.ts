@@ -1,11 +1,45 @@
 import SDK, { type Ticker } from "@uphold/uphold-sdk-javascript";
 
+// Extended Ticker interface with `pairedCurrency` of a given base currency
+export interface EnhancedTicker extends Ticker {
+  pairedCurrency: string;
+}
+
 const sdk = new SDK({
   baseUrl: import.meta.env.DEV ? "/api" : "http://api-sandbox.uphold.com",
   clientId: "foo",
   clientSecret: "bar",
 });
 
+/**
+ * Extracts the paired currency code from different ticker pair formats.
+ * @param pair - The currency pair string (e.g. "XCH-USD" or "XAUUSD")
+ * @param currency - The quote currency (e.g. "USD")
+ * @returns The extracted paired currency code
+ */
+function extractPairedCurrency(pair: string, currency: string) {
+  // Format: "XCH-USD"
+  if (pair.includes("-")) {
+    const parts = pair.split("-");
+    return parts[0] === currency ? parts[1] : parts[0];
+  }
+
+  // Format: "XAUUSD" where currency is "USD"
+  else {
+    if (pair.endsWith(currency)) {
+      return pair.substring(0, pair.length - currency.length);
+    } else if (pair.startsWith(currency)) {
+      return pair.substring(currency.length);
+    }
+    // Default fallback
+    return pair;
+  }
+}
+
+/**
+ * Gets all the currencies that UpHolds supports for conversion.
+ * @returns all currencies supported by UpHold.
+ */
 export const getAllCurrencies = async (): Promise<string[]> => {
   try {
     // Get all USD pairs by default
@@ -17,51 +51,36 @@ export const getAllCurrencies = async (): Promise<string[]> => {
     
     // Always add USD (since that's our default reference)
     currenciesSet.add("USD");
-    
     tickerArray.forEach(ticker => {
-      if (ticker.pair) {
-        // Extract currency codes from pair strings
-        if (ticker.pair.includes('-')) {
-          // Format: "USD-EUR"
-          const [first, second] = ticker.pair.split('-');
-          currenciesSet.add(first);
-          currenciesSet.add(second);
-        } else {
-          // Format: "USDEUR"
-          if (ticker.currency && ticker.pair.endsWith(ticker.currency)) {
-            // Extract the first part of the pair (e.g., "USD" from "USDEUR")
-            const firstCurrency = ticker.pair.substring(0, ticker.pair.length - ticker.currency.length);
-            currenciesSet.add(firstCurrency);
-          } else if (ticker.currency && ticker.pair.startsWith(ticker.currency)) {
-            // Extract the second part (e.g., "EUR" from "EURJPY" where currency is "EUR")
-            const secondCurrency = ticker.pair.substring(ticker.currency.length);
-            currenciesSet.add(secondCurrency);
-          }
-          // Also add the ticker currency itself
-          if (ticker.currency) {
-            currenciesSet.add(ticker.currency);
-          }
-        }
+      if (ticker.pair && ticker.currency) {
+        const pairedCurrency = extractPairedCurrency(ticker.pair, ticker.currency);
+        currenciesSet.add(pairedCurrency);
+        currenciesSet.add(ticker.currency);
       }
     });
     
-    // Convert to sorted array
-    return Array.from(currenciesSet).sort();
+    // Convert to array
+    return Array.from(currenciesSet);
   } catch (error) {
     console.error("Error fetching available currencies:", error);
     throw error;
   }
 };
 
-export const getCurrencyRates = async (baseCurrency = ""): Promise<Ticker[]> => {
+/**
+ * Gets the currency pairs and their rates from UpHold for a given base currency.
+ * @param baseCurrency The base currency to get rates for. If empty, defaults to 'USD'.
+ * @returns An array of EnhancedTicker objects with the rates and paired currency.
+ */
+export const getCurrencyRates = async (baseCurrency = ""): Promise<EnhancedTicker[]> => {
   try {
     const rates = await sdk.getTicker(baseCurrency);
     
     // Handle either single Ticker or array of Tickers
     if (Array.isArray(rates)) {
-      return rates.map(formatRate);
+      return rates.map(rate => enhanceTicker(rate));
     } else {
-      return [formatRate(rates)];
+      return [enhanceTicker(rates)];
     }
   } catch (error) {
     console.error("Error fetching currency rates:", error);
@@ -69,9 +88,21 @@ export const getCurrencyRates = async (baseCurrency = ""): Promise<Ticker[]> => 
   }
 };
 
-// Helper function to format rate values consistently
-const formatRate = (rate: Ticker): Ticker => ({
-  ...rate,
-  ask: parseFloat(rate.ask).toFixed(6),
-  bid: parseFloat(rate.bid).toFixed(6),
-});
+
+/**
+ * Enhances the Ticker object by formatting its values and adding the paired currency.
+ * @param rate The Ticker object to enhance.
+ * @returns An EnhancedTicker object with formatted values and paired currency.
+ */
+const enhanceTicker = (rate: Ticker): EnhancedTicker => {
+  const formattedRate = {
+    ...rate,
+    ask: parseFloat(rate.ask).toFixed(6),
+    bid: parseFloat(rate.bid).toFixed(6),
+  };
+  
+  return {
+    ...formattedRate,
+    pairedCurrency: rate.currency ? extractPairedCurrency(rate.pair, rate.currency) : ''
+  };
+};
