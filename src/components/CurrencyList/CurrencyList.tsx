@@ -72,10 +72,10 @@ const CurrencyItem: React.FC<CurrencyItemProps> = ({ currencyData, baseAmount })
       </div>
 
       <div className={styles.contentContainer}>
-        <h4 className={styles.title} id={`currency-amount-${currencyCode}`}>
+        <h4 className={styles.title} id={`currency-amount-${currencyCode}`} title={`${convertedValue} ${currencyCode}`}>
           {convertedValue}
         </h4>
-        <p className={styles.description} id={`currency-code-${currencyCode}`}>
+        <p className={styles.description} id={`currency-code-${currencyCode}`} title={currencyCode}>
           {currencyCode}
         </p>
       </div>
