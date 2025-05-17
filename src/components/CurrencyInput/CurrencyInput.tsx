@@ -46,27 +46,30 @@ const CurrencyInput: React.FC<CurrencyInputProps> = ({
   
   return (
     <div className={styles.currencyInputContainer}>
-      <div className={styles.currencyInputField}>
+      <div className={styles.currencyRow}>
         <input
           type="text"
           value={inputValue}
           onChange={handleInputChange}
           placeholder="0.00"
           className={styles.amountInput}
+          aria-label="Amount"
         />
         <div className={styles.currencySelector}>
-          <div className={styles.selectedCurrency}>
-            <select 
-              value={currency} 
-              onChange={(e) => onCurrencyChange(e.target.value)}
-              className={styles.currencySelect}
-            >
-              {currencies.map((curr) => (
-                <option key={curr} value={curr}>
-                  {curr}
-                </option>
-              ))}
-            </select>
+          <select 
+            value={currency} 
+            onChange={(e) => onCurrencyChange(e.target.value)}
+            className={styles.currencySelect}
+            aria-label="Select currency"
+          >
+            {currencies.map((curr) => (
+              <option key={curr} value={curr}>
+                {curr}
+              </option>
+            ))}
+          </select>
+          <div className={styles.displayedCurrency}>
+            <span className={styles.currencyCode}>{currency}</span>
           </div>
         </div>
       </div>

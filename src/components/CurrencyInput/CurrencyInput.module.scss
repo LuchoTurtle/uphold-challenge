@@ -1,103 +1,106 @@
 @use '../../styles/variables' as *;
 
 .currencyInputContainer {
-  margin-bottom: $space-xs;
+  margin-bottom: $space-md;
+  width: 100%;
+}
+
+.currencyRow {
+  display: flex;
+  align-items: stretch;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   
-  .currencyInputField {
-    display: flex;
-    align-items: stretch; // Ensure equal heights
-    position: sticky;
-    top: 0;
-    background: $color-base-white;
-    z-index: 10;
-    
-    @include dark-mode {
-      background: $dark-background-color;
-    }
+  @include dark-mode {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.amountInput {
+  flex: 2;
+  padding: $space-xs $space-sm;
+  font-size: $font-size-xl;
+  font-weight: 500;
+  border: none;
+  outline: none;
+  min-height: 56px;
+  background-color: $color-base-white;
+  color: $text-color;
+  
+  @include dark-mode {
+    background-color: $dark-background-color;
+    color: $dark-text-color;
   }
   
-  .amountInput {
-    flex: 2; // Reduced from 3 for better balance
-    padding: $space-2xs;
-    font-size: $font-size-lg;
-    border: 1px solid $border-color;
-    border-right: none;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
-    height: 100%; // Ensure consistent height
-    min-height: 48px; // Set minimum height
-    box-sizing: border-box; // Include padding in height calculation
+  &::placeholder {
+    color: rgba($text-color, 0.5);
     
     @include dark-mode {
-      border-color: $dark-border-color;
-      background-color: $color-neutral;
-      color: $dark-text-color;
-    }
-  }
-  
-  .currencySelector {
-    flex: 1;
-    position: relative;
-    
-    .selectedCurrency {
-      height: 100%; // Ensure it takes full height of parent
-      display: flex;
-      align-items: stretch;
-      
-      .currencyFlag {
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        position: absolute;
-        left: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 1;
-      }
-      
-      .currencySelect {
-        width: 100%;
-        padding: $space-2xs;
-        padding-left: 36px; // Make room for the flag
-        font-size: $font-size-lg;
-        border: 1px solid $border-color;
-        background: $color-base-white;
-        border-top-right-radius: 4px;
-        border-bottom-right-radius: 4px;
-        cursor: pointer;
-        appearance: none;
-        min-height: 48px; // Match input height
-        box-sizing: border-box;
-        
-        @include dark-mode {
-          border-color: $dark-border-color;
-          background-color: $color-neutral;
-          color: $dark-text-color;
-        }
-      }
+      color: rgba($dark-text-color, 0.5);
     }
   }
 }
 
-// Media queries for responsive sizing
+.currencySelector {
+  position: relative;
+  flex: 1;
+  background-color: $color-primary;
+  min-width: 100px;
+  
+  @include dark-mode {
+    background-color: $color-primary-dark;
+  }
+}
+
+.currencySelect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 2;
+  padding: $space-xs;
+}
+
+.displayedCurrency {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 $space-xs;
+  color: $color-base-white;
+  font-weight: 600;
+}
+
+.currencyCode {
+  font-size: $font-size-lg;
+}
+
+// Responsive adjustments
 @media (min-width: $breakpoint-sm) {
-  .currencyInputContainer {
-    
-    .amountInput, 
-    .currencySelector .selectedCurrency .currencySelect {
-      padding: $space-sm;
-      font-size: $font-size-xl;
-      min-height: 56px; // Larger minimum height for bigger screens
-    }
+  .amountInput {
+    padding: $space-sm;
+    font-size: $font-size-2xl;
+  }
+  
+  .displayedCurrency {
+    padding: 0 $space-sm;
+  }
+  
+  .currencyCode {
+    font-size: $font-size-xl;
   }
 }
 
-@media (min-width: $breakpoint-md) {
-  .currencyInputContainer {
-    
-    .amountInput, 
-    .currencySelector .selectedCurrency .currencySelect {
-      min-height: 64px; // Even larger for medium screens
-    }
-  }
+// Add a dropdown indicator
+.displayedCurrency::after {
+  content: '';
+  display: inline-block;
+  margin-left: $space-2xs;
+  border-top: 4px solid $color-base-white;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
 }
