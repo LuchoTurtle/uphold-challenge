@@ -1,29 +1,5 @@
 @use '../../styles/variables' as *;
 
-.container {
-  width: 100%;
-  max-width: $container-sm;
-  margin: $space-xs auto;
-  padding: $space-xs;
-  background-color: $background-color;
-  border-radius: 8px;
-  
-  @include dark-mode {
-    background-color: $dark-background-color;
-  }
-}
-
-.title {
-  font-size: $font-size-3xl;
-  line-height: $leading-3xl;
-  color: $text-color;
-  margin-bottom: $space-xs;
-  text-align: center;
-  
-  @include dark-mode {
-    color: $dark-text-color;
-  }
-}
 
 .loading,
 .error {

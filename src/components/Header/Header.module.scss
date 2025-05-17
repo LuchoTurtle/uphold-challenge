@@ -12,8 +12,6 @@
 }
 
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
   padding: 0 $space-md;
   display: flex;
   align-items: center;
@@ -40,7 +38,7 @@
 /* styles from https://uiverse.io/JustCode14/red-dingo-61 */
 /* The switch - the box around the slider */
 .switch {
-  font-size: 17px;
+  font-size: $font-size-base;
   position: relative;
   display: inline-block;
   width: 4em;

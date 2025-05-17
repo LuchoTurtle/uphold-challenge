@@ -5,17 +5,8 @@ import CurrencyList from "../CurrencyList/CurrencyList";
 import styles from "./CurrencyConverter.module.scss";
 
 const CurrencyConverter: React.FC = () => {
-  const { 
-    amount, 
-    baseCurrency, 
-    rates, 
-    currencies,
-    loading, 
-    loadingCurrencies,
-    error, 
-    handleAmountChange, 
-    handleCurrencyChange 
-  } = useCurrencyConverter("USD");
+  const { amount, baseCurrency, rates, currencies, loading, loadingCurrencies, error, handleAmountChange, handleCurrencyChange } =
+    useCurrencyConverter("USD");
 
   // Loading state - show a spinner or loading message
   if (loadingCurrencies) {
@@ -32,18 +23,14 @@ const CurrencyConverter: React.FC = () => {
     return (
       <div className={styles.container}>
         <h1 className={styles.title}>Currency Converter</h1>
-        <div className={styles.error}>
-          {error ? `Error: ${error.message}` : "No currencies available. Please try again later."}
-        </div>
+        <div className={styles.error}>{error ? `Error: ${error.message}` : "No currencies available. Please try again later."}</div>
       </div>
     );
   }
 
   // Only render the component when currencies are successfully loaded
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>Currency Converter</h1>
-
+    <div>
       <CurrencyInput
         amount={amount}
         currency={baseCurrency}
