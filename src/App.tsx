@@ -8,6 +8,9 @@ import './App.module.scss'
 //TODO icon no topo da tab (html)
 //TODO duplicated code (no format)
 //TODO check warnings
+//TODO input limit?
+//TODO check file before submitting
+//TODO SCSS files to be nested and shi
 function App() {
   return (
     <>

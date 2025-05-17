@@ -1,4 +1,4 @@
-@use '../../styles/variables' as *;
+@use "../../styles/variables" as *;
 
 .currencyList {
   display: grid;
@@ -20,17 +20,17 @@
   gap: $space-xs;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-  
+
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   }
-  
+
   @include dark-mode {
-    background-color: transparent; // Transparent background instead of dark color
-    backdrop-filter: blur(8px); // Add blur effect
-    border: 1px solid rgba(255, 255, 255, 0.1); // Subtle white border
-    box-shadow: 0 -20px 80px -20px rgba(255, 255, 255, 0.12) inset; // Inner glow effect
+    background-color: transparent;
+    backdrop-filter: blur(8px);
+    border: 1px solid lighten($dark-background-color, 10%);
+    box-shadow: 0 -20px 80px -20px lighten($dark-background-color, 12%) inset;
   }
 }
 
@@ -66,49 +66,49 @@
   font-size: $font-size-base;
   text-transform: uppercase;
   color: $text-color;
-  
+
   @include dark-mode {
     color: $dark-text-color;
   }
-  
+
   // Color variants for light mode
   &.color1 {
-    background-color: #BFDBFE; // Light blue
-    
+    background-color: $color-fallback-blue-light;
+
     @include dark-mode {
-      background-color: #1E40AF; // Dark blue
+      background-color: $color-fallback-blue-dark;
     }
   }
-  
+
   &.color2 {
-    background-color: #BBF7D0; // Light green
-    
+    background-color: $color-fallback-green-light;
+
     @include dark-mode {
-      background-color: #166534; // Dark green
+      background-color: $color-fallback-green-dark;
     }
   }
-  
+
   &.color3 {
-    background-color: #FEE2E2; // Light red
-    
+    background-color: $color-fallback-red-light;
+
     @include dark-mode {
-      background-color: #991B1B; // Dark red
+      background-color: $color-fallback-red-dark;
     }
   }
-  
+
   &.color4 {
-    background-color: #FEF3C7; // Light yellow
-    
+    background-color: $color-fallback-yellow-light;
+
     @include dark-mode {
-      background-color: #854D0E; // Dark amber
+      background-color: $color-fallback-yellow-dark;
     }
   }
-  
+
   &.color5 {
-    background-color: #E9D5FF; // Light purple
-    
+    background-color: $color-fallback-purple-light;
+
     @include dark-mode {
-      background-color: #6B21A8; // Dark purple
+      background-color: $color-fallback-purple-dark;
     }
   }
 }
@@ -126,7 +126,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  
+
   @include dark-mode {
     color: $dark-text-color;
   }
@@ -139,7 +139,7 @@
   text-overflow: ellipsis;
   overflow: hidden;
   color: rgba($text-color, 0.7);
-  
+
   @include dark-mode {
     color: rgba($dark-text-color, 0.7);
   }

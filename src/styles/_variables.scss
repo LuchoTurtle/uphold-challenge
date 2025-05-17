@@ -70,6 +70,20 @@ $skeleton-gradient-mid-light: #e0e0e0;
 $skeleton-gradient-start-dark: #333333;
 $skeleton-gradient-mid-dark: #3a3a3a;
 
+// Currency list fallback icon colors - Light mode
+$color-fallback-blue-light: #BFDBFE;
+$color-fallback-green-light: #BBF7D0;
+$color-fallback-red-light: #FEE2E2;
+$color-fallback-yellow-light: #FEF3C7;
+$color-fallback-purple-light: #E9D5FF;
+
+// Currency list fallback icon colors - Dark mode
+$color-fallback-blue-dark: #1E40AF;
+$color-fallback-green-dark: #166534;
+$color-fallback-red-dark: #991B1B;
+$color-fallback-yellow-dark: #854D0E;
+$color-fallback-purple-dark: #6B21A8;
+
 // Dark mode mixin
 @mixin dark-mode {
   [data-theme="dark"] & {
