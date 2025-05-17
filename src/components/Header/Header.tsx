@@ -1,43 +1,33 @@
-import React from 'react';
-import styles from './Header.module.scss';
-import darkLogo from '../../assets/uphold-horizontal-dark.svg';
-import lightLogo from '../../assets/uphold-horizontal-light.svg';
-import { useTheme } from '../../hooks';
+import React from "react";
+import styles from "./Header.module.scss";
+import darkLogo from "../../assets/uphold-horizontal-dark.svg";
+import lightLogo from "../../assets/uphold-horizontal-light.svg";
+import { useTheme } from "../../hooks";
 
+/**
+ * Header component. It contains the logo and the toggle for dark mode.
+ * @returns Header component with logo and dark mode toggle.
+ */
 const Header: React.FC = () => {
-  // Use the theme context instead of local state
   const { isDarkMode, toggleDarkMode } = useTheme();
-  
-  // Use the appropriate logo based on theme
+
   const logoSrc = isDarkMode ? darkLogo : lightLogo;
 
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        {/* Logo/icon on the left */}
         <div className={styles.logoContainer}>
-          <img 
-            src={logoSrc} 
-            alt="Uphold Currency Converter" 
-            className={styles.logo}
-          />
+          <img src={logoSrc} alt="Uphold Currency Converter" className={styles.logo} />
         </div>
-        
-        {/* Theme toggle on the right */}
+
         <div className={styles.rightComponent}>
           <label className={styles.switch}>
-            <input 
-              checked={!isDarkMode} 
-              id="themeToggle" 
-              type="checkbox" 
-              onChange={toggleDarkMode}
-              aria-label="Toggle dark mode"
-            />
+            <input checked={!isDarkMode} id="themeToggle" type="checkbox" onChange={toggleDarkMode} aria-label="Toggle dark mode" />
             <span className={styles.slider}>
-              <div className={styles.star + ' ' + styles.star_1}></div>
-              <div className={styles.star + ' ' + styles.star_2}></div>
-              <div className={styles.star + ' ' + styles.star_3}></div>
-              <svg viewBox="0 0 16 16" className={styles.cloud + ' ' + styles.cloud_1}>
+              <div className={styles.star + " " + styles.star_1}></div>
+              <div className={styles.star + " " + styles.star_2}></div>
+              <div className={styles.star + " " + styles.star_3}></div>
+              <svg viewBox="0 0 16 16" className={styles.cloud + " " + styles.cloud_1}>
                 <path
                   transform="matrix(.77976 0 0 .78395-299.99-418.63)"
                   fill="#fff"
