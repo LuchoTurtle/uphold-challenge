@@ -13,16 +13,12 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     if (savedTheme !== null) {
       return savedTheme === "true";
     }
+
     // Check system preference
     return window.matchMedia("(prefers-color-scheme: light)").matches;
   };
 
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
-
-  // Set initial theme after component mounts to avoid SSR mismatch
-  useEffect(() => {
-    setIsDarkMode(getInitialTheme());
-  }, []);
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(getInitialTheme());
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", isDarkMode ? "dark" : "light");
