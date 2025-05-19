@@ -102,7 +102,7 @@ NOTES:
 - montserrat is the closest font to the one used in the original design
 - added all the styles from the brand guide from link.
 - used CSS modules instead of styled components to keep it simpler and have CSS guidelines be more visible
-- downloaded icons from `https://github.com/spothq/cryptocurrency-icons/tree/master/svg/color` 
+- downloaded icons from `https://github.com/spothq/cryptocurrency-icons/tree/master/svg/color`
 - could have virtualized and could have fixed the height and width of the items but decided against it, it wasn't really relevant. Decided to sticky the header instead.
 - tried to follow Uphold guidelines through variables and global
 - added accessbility as much as possible
@@ -111,7 +111,7 @@ NOTES:
 - added ark/light mode with user preference detection and localStorage persistence
 - added skeleton screens for improved perceived performance
 - used react-query for data fetching and caching (instead of using a map inside the code)
-- used the defaults from react-query and vitest. 
+- used the defaults from react-query and vitest.
 - proxied the API calls to avoid CORS issues during development. In production, a backend proxy server (e.g., Express) would be necessary to handle CORS and secure API keys.
 - added vitest for unit testing and coverage. Didn't add tests because of lack of time but did the framework and setup for it.
 

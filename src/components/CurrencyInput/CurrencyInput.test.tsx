@@ -5,7 +5,7 @@ import CurrencyInput from "./CurrencyInput";
 
 // Mock the useDebounce hook to return the value immediately
 vi.mock("../../hooks", () => ({
-  useDebounce: (value: number) => value
+  useDebounce: (value: number) => value,
 }));
 
 describe("CurrencyInput Component", () => {

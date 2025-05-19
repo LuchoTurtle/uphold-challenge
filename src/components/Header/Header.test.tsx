@@ -4,8 +4,8 @@ import Header from "./Header";
 import { ThemeContext } from "../../context/ThemeContext";
 
 // Mock assets
-vi.mock("../../assets/uphold-horizontal-dark.svg", () => ({default: "mock-dark-logo.svg"}));
-vi.mock("../../assets/uphold-horizontal-light.svg", () => ({default: "mock-light-logo.svg"}));
+vi.mock("../../assets/uphold-horizontal-dark.svg", () => ({ default: "mock-dark-logo.svg" }));
+vi.mock("../../assets/uphold-horizontal-light.svg", () => ({ default: "mock-light-logo.svg" }));
 
 describe("Header Component", () => {
   // Test rendering with light theme
