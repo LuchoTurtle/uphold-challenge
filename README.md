@@ -1,6 +1,10 @@
-# Uphold - Assessment Challenge
+# Uphold Frontend Challenge
 
 A responsive currency converter application built with React, TypeScript, and Vite that uses the Uphold API to convert between different currencies in real-time.
+
+<div align="center">
+  <img width="800" src="https://github.com/user-attachments/assets/65ec26c1-eb09-47e8-a0e1-5fcc5c53ed4a">
+</div>
 
 ## 🚀 Getting Started
 
@@ -28,7 +32,9 @@ npm run dev
 
 ## 🧪 Testing
 
-Run the test suite:
+### Unit Tests
+
+Run the unit test suite:
 
 ```bash
 # Run tests in watch mode
@@ -39,6 +45,21 @@ npm run test:coverage
 
 # Run tests with UI
 npm run test:ui
+```
+
+### End-to-End Tests
+
+Run the E2E test suite with Playwright:
+
+```bash
+# Run E2E tests
+npm run e2e
+
+# Run E2E tests with UI mode
+npm run e2e:ui
+
+# Show E2E test report
+npm run e2e:report
 ```
 
 ## 🔨 Building for Production
@@ -59,17 +80,23 @@ npm run preview
 
 ```
 /
-├── public/               # Static assets
-│   └── currencyIcons/    # Currency SVG icons
-├── src/
-│   ├── components/       # React components
-│   ├── context/          # React context providers
-│   ├── hooks/            # Custom React hooks
-│   ├── services/         # API and service functions
-│   ├── styles/           # Global styles and variables
-│   └── tests/            # Test setup and utilities
-├── index.html            # HTML entry point
-└── vite.config.ts        # Vite configuration
+├── public/                # Static assets
+│   └── currencyIcons/     # Currency SVG icons
+├── src/                   # Application source code
+│   ├── components/        # React components
+│   ├── context/           # React context providers
+│   ├── hooks/             # Custom React hooks
+│   ├── services/          # API and service functions
+│   └── styles/            # Global styles and variables
+├── tests/                 # Test configurations and helpers
+│   ├── setup.ts           # Unit test setup
+│   └── e2e/               # End-to-end tests with Playwright
+│       ├── fixtures/      # Test fixtures and mocks
+│       └── *.spec.ts      # Test specs
+├── index.html             # HTML entry point
+├── vite.config.ts         # Vite configuration
+├── vitest.config.ts       # Vitest configuration
+└── playwright.config.ts   # Playwright configuration
 ```
 
 ## 🔧 Technical Details
@@ -82,12 +109,13 @@ npm run preview
 - **React Query** for data fetching and caching
 - **SASS Modules** for component styling
 - **Vitest** for unit testing
+- **Playwright** for end-to-end testing
 
 ## 🙏 Acknowledgments
 
 - Currency icons from [cryptocurrency-icons](https://github.com/spothq/cryptocurrency-icons)
 - Design inspiration from [Uphold's official website](https://uphold.com)
-- Skeleton loading animation adapted from [uiverse.io](https://uiverse.io/JustCode14/red-dingo-61)
+- Theme toggle adapted from [uiverse.io](https://uiverse.io/JustCode14/red-dingo-61)
 
 ## 📝 License
 
@@ -97,12 +125,13 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 NOTES:
 
-- talk about production considerations for CORS (using a  proxy backend with express or something)
+- should have used relative units for the font size and spacing but wanted to stick to the brand dguidelines.
+- talk about production considerations for CORS (using a proxy backend with express or something)
 - could have used `zod` to validate the DATA from the Api since it it can return a single object or an array
 - montserrat is the closest font to the one used in the original design
 - added all the styles from the brand guide from link.
 - used CSS modules instead of styled components to keep it simpler and have CSS guidelines be more visible
-- downloaded icons from `https://github.com/spothq/cryptocurrency-icons/tree/master/svg/color` 
+- downloaded icons from `https://github.com/spothq/cryptocurrency-icons/tree/master/svg/color`
 - could have virtualized and could have fixed the height and width of the items but decided against it, it wasn't really relevant. Decided to sticky the header instead.
 - tried to follow Uphold guidelines through variables and global
 - added accessbility as much as possible
@@ -111,8 +140,9 @@ NOTES:
 - added ark/light mode with user preference detection and localStorage persistence
 - added skeleton screens for improved perceived performance
 - used react-query for data fetching and caching (instead of using a map inside the code)
-- used the defaults from react-query and vitest. 
+- used the defaults from react-query and vitest.
 - proxied the API calls to avoid CORS issues during development. In production, a backend proxy server (e.g., Express) would be necessary to handle CORS and secure API keys.
-- added vitest for unit testing and coverage. Didn't add tests because of lack of time but did the framework and setup for it.
+- added comprehensive testing with Vitest for unit tests and Playwright for E2E tests
+- implemented CI pipeline with GitHub Actions for automated testing
 
 -->

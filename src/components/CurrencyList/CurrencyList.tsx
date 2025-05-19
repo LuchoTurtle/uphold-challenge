@@ -49,7 +49,7 @@ const CurrencyItem: React.FC<CurrencyItemProps> = ({ currencyData, baseAmount })
   }, [currencyCode]);
 
   return (
-    <div className={styles.currencyItem} tabIndex={0} role="article" aria-label={`${convertedValue} ${currencyCode}`}>
+    <div className={styles.currencyItem} tabIndex={0} role="listitem" aria-label={`${convertedValue} ${currencyCode}`}>
       <div className={styles.iconContainer} ref={iconContainerRef} aria-hidden="true">
         {/* Fallback is always rendered by default */}
         <div
@@ -64,7 +64,7 @@ const CurrencyItem: React.FC<CurrencyItemProps> = ({ currencyData, baseAmount })
         <img
           ref={imgRef}
           src={`/currencyIcons/${currencyCode.toLowerCase()}.svg`}
-          alt="" // Changed to empty since it's decorative
+          alt={`${currencyCode.toLowerCase()} icon`}
           className={styles.currencyImage}
           style={{ display: "none" }}
           aria-hidden="true"
@@ -95,7 +95,7 @@ interface CurrencyListProps {
  */
 const CurrencyList: React.FC<CurrencyListProps> = ({ rates, baseAmount }) => {
   return (
-    <div className={styles.currencyList} role="region" aria-label="Currency conversion results">
+    <div className={styles.currencyList} role="list" data-testid="rates-list" aria-label="Currency conversion results">
       {rates.length === 0 ? (
         <p className={styles.noResults}>No currency rates available</p>
       ) : (

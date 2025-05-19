@@ -75,7 +75,13 @@ const CurrencyInput: React.FC<CurrencyInputProps> = ({ amount, currency, onAmoun
           <label htmlFor="currency-select" className={styles.srOnly}>
             Select base currency
           </label>
-          <select id="currency-select" value={currency} onChange={(e) => onCurrencyChange(e.target.value)} className={styles.currencySelect}>
+          <select
+            id="currency-select"
+            data-testid="currency-selector"
+            value={currency}
+            onChange={(e) => onCurrencyChange(e.target.value)}
+            className={styles.currencySelect}
+          >
             {currencies.map((curr) => (
               <option key={curr} value={curr}>
                 {curr}
@@ -90,7 +96,7 @@ const CurrencyInput: React.FC<CurrencyInputProps> = ({ amount, currency, onAmoun
 
       {inputError && (
         <div className={`${styles.inputErrorText} text-tag`} role="alert">
-          <span >{inputError}</span>
+          <span>{inputError}</span>
         </div>
       )}
     </div>

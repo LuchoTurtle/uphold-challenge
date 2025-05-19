@@ -33,8 +33,15 @@ const Header: React.FC = () => {
             <label htmlFor="themeToggle" className={styles.themeLabel}>
               {themeLabel}
             </label>
-            <label className={styles.switch}>
-              <input checked={!isDarkMode} id="themeToggle" type="checkbox" onChange={toggleDarkMode} aria-label={themeLabel} />
+            <label className={styles.switch} data-testid="theme-toggle-label">
+              <input
+                checked={!isDarkMode}
+                id="themeToggle"
+                type="checkbox"
+                data-testid="theme-toggle"
+                onChange={toggleDarkMode}
+                aria-label={themeLabel}
+              />
               <span className={styles.slider} role="presentation">
                 <div className={`${styles.star} ${styles.star_1}`} role="presentation" aria-hidden="true"></div>
                 <div className={`${styles.star} ${styles.star_2}`} role="presentation" aria-hidden="true"></div>

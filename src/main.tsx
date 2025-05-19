@@ -7,6 +7,9 @@ import { ThemeProvider } from "./context/ThemeProvider.tsx";
 
 const queryClient = new QueryClient();
 
+//TODO error state (see how it is)
+//TODO eslint
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
