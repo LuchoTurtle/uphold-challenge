@@ -8,6 +8,7 @@ afterEach(() => {
 });
 
 // From https://github.com/vitest-dev/vitest/issues/821#issuecomment-1046954558
+// Configuration used for unit tests
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
   value: vi.fn().mockImplementation(query => ({

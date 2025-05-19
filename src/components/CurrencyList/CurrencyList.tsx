@@ -95,7 +95,7 @@ interface CurrencyListProps {
  */
 const CurrencyList: React.FC<CurrencyListProps> = ({ rates, baseAmount }) => {
   return (
-    <div className={styles.currencyList} role="list" aria-label="Currency conversion results">
+    <div className={styles.currencyList} role="list" data-testid="rates-list" aria-label="Currency conversion results">
       {rates.length === 0 ? (
         <p className={styles.noResults}>No currency rates available</p>
       ) : (
