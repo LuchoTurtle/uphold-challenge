@@ -87,7 +87,7 @@ npm run preview
 
 - Currency icons from [cryptocurrency-icons](https://github.com/spothq/cryptocurrency-icons)
 - Design inspiration from [Uphold's official website](https://uphold.com)
-- Skeleton loading animation adapted from [uiverse.io](https://uiverse.io/JustCode14/red-dingo-61)
+- Theme toggle adapted from [uiverse.io](https://uiverse.io/JustCode14/red-dingo-61)
 
 ## 📝 License
 
