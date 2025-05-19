@@ -3,7 +3,7 @@
 A responsive currency converter application built with React, TypeScript, and Vite that uses the Uphold API to convert between different currencies in real-time.
 
 <div align="center">
-  <img width="800" src="https://github.com/user-attachments/assets/65ec26c1-eb09-47e8-a0e1-5fcc5c53ed4a>
+  <img width="800" src="https://github.com/user-attachments/assets/65ec26c1-eb09-47e8-a0e1-5fcc5c53ed4a">
 </div>
 
 ## 🚀 Getting Started
