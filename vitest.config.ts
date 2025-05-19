@@ -8,6 +8,7 @@ export default defineConfig({
     globals: true,
     environment: "jsdom",
     setupFiles: ["./tests/setup.ts"],
+    exclude: ["**/node_modules/**", "**/*.e2e.{test,spec}.{ts,tsx}", "**/tests/e2e/**"],
     css: {
       modules: {
         classNameStrategy: "non-scoped",
@@ -22,9 +23,6 @@ export default defineConfig({
         "src/**/*.d.ts",
         "src/**/*.test.{ts,tsx,js,jsx}",
         "src/**/index.{ts,tsx,js,jsx}",
-        "src/tests/**",
-        "src/types/**",
-        "src/mocks/**",
       ],
     },
   },
